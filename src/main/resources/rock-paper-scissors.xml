@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rg:regurgitator-configuration xmlns:rg="http://core.regurgitator.emarte.com" xmlns:rge="http://extensions.regurgitator.emarte.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							   xsi:schemaLocation="http://core.regurgitator.emarte.com regurgitatorCore.xsd http://extensions.regurgitator.emarte.com regurgitatorExtensions.xsd" id="rock-paper-scissors">
+	<rg:identify-session id="id-session" source="request-metadata:jms-destination"/>
+	<rg:create-parameter id="set-content-type-json" name="response-metadata:content-type" value="application/json"/>
+	<rg:decision id="are-we-playing">
+		<rg:steps>
+			<rg:sequence id="not-playing">
+				<rg:create-parameter id="set-text-content-type" name="response-metadata:content-type" value="text/plain"/>
+				<rg:create-response id="tell-not-playing" value="It's good, but it's not the one!"/>
+			</rg:sequence>
+			<rg:sequence id="playing">
+				<rge:json-parameter id="extract-choice" name="playerchoice" source="request-payload:text" json-path="$.choice"/>
+
+				<rg:create-parameter id="define-computer-choices" name="computer-choices" type="LIST_OF_STRING" value="rock,paper,scissors"/>
+				<rg:generate-parameter id="choose-computer-index" name="computer-index">
+					<rg:number-generator max="3"/>
+				</rg:generate-parameter>
+				<rg:create-parameter id="extract-computer-choice" name="computerchoice" source="computer-choices">
+						<rg:index-processor source="computer-index"/>
+				</rg:create-parameter>
+
+				<rg:decision id="determine-result">
+					<rg:steps>
+						<rg:sequence id="draw">
+							<rg:create-parameter id="set-draw-result" name="result" value="a draw"/>
+							<rg:create-parameter id="set-session-drawtotal" name="session:draw-total" type="NUMBER" merge="CONCAT" value="1"/>
+						</rg:sequence>
+						<rg:sequence id="player-win">
+							<rg:create-parameter id="set-player-win-result" name="result" value="player wins"/>
+							<rg:create-parameter id="set-session-playertotal" name="session:player-total" type="NUMBER" merge="CONCAT" value="1"/>
+						</rg:sequence>
+						<rg:sequence id="computer-wins">
+							<rg:create-parameter id="set-computer-wins-result" name="result" value="computer wins"/>
+							<rg:create-parameter id="set-session-computertotal" name="session:computer-total" type="NUMBER" merge="CONCAT" value="1"/>
+						</rg:sequence>
+					</rg:steps>
+					<rg:rules default-step="computer-wins">
+						<rg:rule id="is-draw" step="draw">
+							<rg:condition id="player-got-same-as-computer" source="playerchoice" equals-param="computerchoice"/>
+						</rg:rule>
+						<rg:rule id="rock-beats-paper" step="player-win">
+							<rg:condition id="player-rock" source="playerchoice" equals="rock"/>
+							<rg:condition id="comp-scissors" source="computerchoice" equals="scissors"/>
+						</rg:rule>
+						<rg:rule id="paper-beats-rock" step="player-win">
+							<rg:condition id="player-paper" source="playerchoice" equals="paper"/>
+							<rg:condition id="comp-rock" source="computerchoice" equals="rock"/>
+						</rg:rule>
+						<rg:rule id="scissors-beats-paper" step="player-win">
+							<rg:condition id="player-scissors" source="playerchoice" equals="scissors"/>
+							<rg:condition id="comp-paper" source="computerchoice" equals="paper"/>
+						</rg:rule>
+					</rg:rules>
+				</rg:decision>
+				<rg:create-parameter id="get-session-draw-total" name="drawtotal" type="NUMBER" source="session:draw-total" value="0"/>
+				<rg:create-parameter id="get-session-player-total" name="playertotal" type="NUMBER" source="session:player-total" value="0"/>
+				<rg:create-parameter id="get-session-computer-total" name="computertotal" type="NUMBER" source="session:computer-total" value="0"/>
+				<rg:create-parameter id="get-welcome-message" name="player_name" source="global-metadata:player_name" value="Player"/>
+				<rg:build-parameter id="create-response" name="response">
+					<rge:freemarker-builder>{"message": "Hi ${player_name}", "player": "${playerchoice}", "computer": "${computerchoice}", "result": "${result}", "totals": { "wins": ${playertotal}, "losses": ${computertotal}, "draws": ${drawtotal} } }</rge:freemarker-builder>
+				</rg:build-parameter>
+				<rg:create-response id="tell-result" source="response"/>
+			</rg:sequence>
+		</rg:steps>
+		<rg:rules default-step="not-playing">
+			<rg:rule id="check-url" step="playing">
+				<rg:condition id="payload-exists" source="request-payload:text" exists="true"/>
+				<rg:condition id="payload-contains-choice" source="request-payload:text" contains-json-path="$.choice"/>
+			</rg:rule>
+		</rg:rules>
+	</rg:decision>
+</rg:regurgitator-configuration>

@@ -4,6 +4,7 @@ public interface ExtensionsMqConfigConstants {
 	// contexts
     public static final String REQUEST_METADATA_CONTEXT = "request-metadata";
     public static final String REQUEST_PAYLOAD_CONTEXT = "request-payload";
+	public static final String RESPONSE_METADATA_CONTEXT = "response-metadata";
 
 	// metadata
 	public static final String JMS_MESSAGE_ID = "jms-message-id";
