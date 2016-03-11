@@ -5,8 +5,11 @@ import com.emarte.regurgitator.core.Message;
 
 import javax.jms.*;
 
+import java.util.Enumeration;
+
 import static com.emarte.regurgitator.core.CoreTypes.*;
 import static com.emarte.regurgitator.core.Log.getLog;
+import static com.emarte.regurgitator.core.StringType.stringify;
 import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
 
 public class MessageRequestUtil {
@@ -14,6 +17,7 @@ public class MessageRequestUtil {
 
 	public static void applyRequestData(Message message, TextMessage jmsMessage) throws JMSException, RegurgitatorException {
 		addMessageMetadata(message, jmsMessage);
+		addMessageProperties(message, jmsMessage);
 		addPayload(message, jmsMessage);
 	}
 
@@ -29,6 +33,22 @@ public class MessageRequestUtil {
 		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_REDELiVERED, String.valueOf(jmsMessage.getJMSRedelivered()));
 		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_REPLY_TO, String.valueOf(jmsMessage.getJMSReplyTo()));
 		addLongParam(message, REQUEST_METADATA_CONTEXT, JMS_TIMESTAMP, jmsMessage.getJMSTimestamp());
+	}
+
+	private static void addMessageProperties(Message message, TextMessage jmsMessage) throws JMSException, RegurgitatorException {
+		log.debug("Adding properties to message from jms message");
+		Enumeration<String> propertyNames = jmsMessage.getPropertyNames();
+
+		while(propertyNames.hasMoreElements()) {
+			String name = propertyNames.nextElement();
+			Object value = jmsMessage.getObjectProperty(name);
+
+			if(value instanceof Integer) {
+				addIntegerParam(message, REQUEST_PROPERTIES_CONTEXT, name, (Integer) value);
+			} else {
+				addStringParam(message, REQUEST_PROPERTIES_CONTEXT, name, stringify(value));
+			}
+		}
 	}
 
 	private static void addPayload(Message message, TextMessage jmsMessage) throws JMSException, RegurgitatorException {

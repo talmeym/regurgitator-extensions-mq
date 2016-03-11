@@ -3,6 +3,7 @@ package com.emarte.regurgitator.extensions.mq;
 public interface ExtensionsMqConfigConstants {
 	// contexts
     public static final String REQUEST_METADATA_CONTEXT = "request-metadata";
+	public static final String REQUEST_PROPERTIES_CONTEXT = "request-properties";
     public static final String REQUEST_PAYLOAD_CONTEXT = "request-payload";
 	public static final String RESPONSE_METADATA_CONTEXT = "response-metadata";
 
