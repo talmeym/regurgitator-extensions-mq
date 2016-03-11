@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rg:regurgitator-configuration xmlns:rg="http://core.regurgitator.emarte.com" xmlns:rge="http://extensions.regurgitator.emarte.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 							   xsi:schemaLocation="http://core.regurgitator.emarte.com regurgitatorCore.xsd http://extensions.regurgitator.emarte.com regurgitatorExtensions.xsd" id="rock-paper-scissors">
-	<rg:identify-session id="id-session" source="request-metadata:jms-destination"/>
-	<rg:create-parameter id="set-content-type-json" name="response-metadata:content-type" value="application/json"/>
+	<rg:identify-session id="id-session" source="request-metadata:jms-correlation-id" value="def-session-id"/>
+	<rg:create-parameter name="response-metadata:jms-correlation-id" source="request-metadata:jms-correlation-id" value="default-session-id"/>
 	<rg:decision id="are-we-playing">
 		<rg:steps>
-			<rg:sequence id="not-playing">
-				<rg:create-parameter id="set-text-content-type" name="response-metadata:content-type" value="text/plain"/>
-				<rg:create-response id="tell-not-playing" value="It's good, but it's not the one!"/>
-			</rg:sequence>
+			<rg:create-response id="not-playing" value="It's good, but it's not the one!"/>
 			<rg:sequence id="playing">
 				<rge:json-parameter id="extract-choice" name="playerchoice" source="request-payload:text" json-path="$.choice"/>
 
@@ -56,9 +53,8 @@
 				<rg:create-parameter id="get-session-draw-total" name="drawtotal" type="NUMBER" source="session:draw-total" value="0"/>
 				<rg:create-parameter id="get-session-player-total" name="playertotal" type="NUMBER" source="session:player-total" value="0"/>
 				<rg:create-parameter id="get-session-computer-total" name="computertotal" type="NUMBER" source="session:computer-total" value="0"/>
-				<rg:create-parameter id="get-welcome-message" name="player_name" source="global-metadata:player_name" value="Player"/>
 				<rg:build-parameter id="create-response" name="response">
-					<rge:freemarker-builder>{"message": "Hi ${player_name}", "player": "${playerchoice}", "computer": "${computerchoice}", "result": "${result}", "totals": { "wins": ${playertotal}, "losses": ${computertotal}, "draws": ${drawtotal} } }</rge:freemarker-builder>
+					<rge:freemarker-builder>{"message": "Hi Player", "player": "${playerchoice}", "computer": "${computerchoice}", "result": "${result}", "totals": { "wins": ${playertotal}, "losses": ${computertotal}, "draws": ${drawtotal} } }</rge:freemarker-builder>
 				</rg:build-parameter>
 				<rg:create-response id="tell-result" source="response"/>
 			</rg:sequence>
