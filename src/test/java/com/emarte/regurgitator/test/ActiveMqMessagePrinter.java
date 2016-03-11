@@ -5,9 +5,12 @@ import java.util.*;
 
 public class ActiveMqMessagePrinter {
 	public static void main(String[] args) throws JMSException {
-		QueueConnection connection = new ActiveMqMessagingSystem(args[0]).getConnection();
+		String brokerUri = args[0];
+		String inputQueue = args[1];
+
+		QueueConnection connection = new ActiveMqMessagingSystem(brokerUri).getConnection();
 		QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
-		QueueReceiver receiver = session.createReceiver(session.createQueue(args[1]));
+		QueueReceiver receiver = session.createReceiver(session.createQueue(inputQueue));
 
 		receiver.setMessageListener(new MessageListener() {
 			@Override
@@ -24,7 +27,7 @@ public class ActiveMqMessagePrinter {
 					String type = textMessage.getJMSType();
 					System.out.println("type: " + type);
 
-					String destination = textMessage.getJMSDestination().toString();
+					String destination = String.valueOf(textMessage.getJMSDestination());
 					System.out.println("destination: " + destination);
 
 					String correlationID = textMessage.getJMSCorrelationID();
@@ -34,7 +37,7 @@ public class ActiveMqMessagePrinter {
 					System.out.println("delivery-mode: " + deliveryMode);
 
 					long expiration = textMessage.getJMSExpiration();
-					System.out.println("expiration: " + (expiration != 0 ? new Date(expiration).toString() : expiration) + " now:" + new Date().toString());
+					System.out.println("expiration: " + (expiration != 0 ? new Date(expiration).toString() : expiration) + " (now:" + new Date() + ")");
 
 					int priority = textMessage.getJMSPriority();
 					System.out.println("priority: " + priority);
@@ -42,7 +45,7 @@ public class ActiveMqMessagePrinter {
 					boolean redelivered = textMessage.getJMSRedelivered();
 					System.out.println("redelivered: " + redelivered);
 
-					String replyTo = textMessage.getJMSReplyTo() != null ? textMessage.getJMSReplyTo().toString() : null;
+					String replyTo = String.valueOf(textMessage.getJMSReplyTo());
 					System.out.println("replyTo: " + replyTo);
 
 					long timestamp = textMessage.getJMSTimestamp();
@@ -53,7 +56,7 @@ public class ActiveMqMessagePrinter {
 					while(enumeration.hasMoreElements()) {
 						String name = (String) enumeration.nextElement();
 						Object value = textMessage.getObjectProperty(name);
-						System.out.println("property[" + name + "]: " + value.toString());
+						System.out.println("property[" + name + "]: " + String.valueOf(value));
 					}
 
 					System.out.println("\n======================");

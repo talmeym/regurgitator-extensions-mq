@@ -9,6 +9,13 @@ import static com.emarte.regurgitator.core.ConfigurationFile.loadFile;
 
 public class ActiveMqMessageBridge {
 	public static void main(String[] args) throws RegurgitatorException, JMSException {
-		new MqMessageBridge(new ActiveMqMessagingSystem(args[0]), args[1], args[2], new Regurgitator(args[3], loadFile(args[4])));
+
+		String brokerUri = args[0];
+		String inputQueue = args[1];
+		String outputQueue = args[2];
+		String regurgitatorId = args[3];
+		String regurgitatorConfigLocation = args[4];
+
+		new MqMessageBridge(new ActiveMqMessagingSystem(brokerUri), inputQueue, outputQueue, new Regurgitator(regurgitatorId, loadFile(regurgitatorConfigLocation)));
 	}
 }
