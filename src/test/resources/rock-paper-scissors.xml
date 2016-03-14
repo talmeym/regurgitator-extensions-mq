@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rg:regurgitator-configuration xmlns:rg="http://core.regurgitator.emarte.com" xmlns:rge="http://extensions.regurgitator.emarte.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 							   xsi:schemaLocation="http://core.regurgitator.emarte.com regurgitatorCore.xsd http://extensions.regurgitator.emarte.com regurgitatorExtensions.xsd" id="rock-paper-scissors">
+
 	<rg:identify-session id="id-session" source="request-metadata:jms-correlation-id" value="def-session-id"/>
-	<rg:create-parameter name="response-metadata:jms-correlation-id" source="request-metadata:jms-correlation-id" value="default-session-id"/>
+	<rg:create-parameter name="response-metadata:jms-correlation-id" source="request-metadata:jms-correlation-id" value="def-correlation-id"/>
+	<rg:create-parameter name="response-metadata:jms-type" source="request-metadata:jms-type" value="def-type"/>
+	<rg:create-parameter name="response-metadata:jms-redelivered" source="request-metadata:jms-redelivered" value="false"/>
+
+	<rg:create-parameter name="response-properties:test-prop-1" type="NUMBER" value="78"/>
+	<rg:create-parameter name="response-properties:test-prop-2" type="STRING" value="test value"/>
+
 	<rg:decision id="are-we-playing">
 		<rg:steps>
 			<rg:create-response id="not-playing" value="It's good, but it's not the one!"/>
