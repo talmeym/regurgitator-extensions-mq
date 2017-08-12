@@ -8,11 +8,11 @@ public class ActiveMqMessagePrinter {
 		String brokerUri = args[0];
 		String inputQueue = args[1];
 
-		QueueConnection connection = new ActiveMqMessagingSystem(brokerUri).getConnection();
-		QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
-		QueueReceiver receiver = session.createReceiver(session.createQueue(inputQueue));
+		Connection connection = new ActiveMqMessagingSystem(brokerUri).getConnection();
+		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		MessageConsumer consumer = session.createConsumer(session.createQueue(inputQueue));
 
-		receiver.setMessageListener(new MessageListener() {
+		consumer.setMessageListener(new MessageListener() {
 			@Override
 			public void onMessage(Message message) {
 				TextMessage textMessage = (TextMessage) message;

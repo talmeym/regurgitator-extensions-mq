@@ -4,6 +4,7 @@ import com.emarte.regurgitator.core.*;
 import com.emarte.regurgitator.core.Message;
 
 import javax.jms.*;
+import javax.jms.Session;
 
 import static com.emarte.regurgitator.core.Log.getLog;
 import static com.emarte.regurgitator.core.StringType.stringify;
@@ -11,14 +12,14 @@ import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.
 import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.RESPONSE_METADATA_CONTEXT;
 import static com.emarte.regurgitator.extensions.mq.MessageResponseUtil.applyResponseData;
 
-public class MqResponseCallback implements ResponseCallBack {
+class MqResponseCallback implements ResponseCallBack {
 	private static final Log log = getLog(MqResponseCallback.class);
 	private final MqMessagingSystem mqMessagingSystem;
-	private final String defaultOutputQueue;
+	private final String defaultOutputDestination;
 
-	public MqResponseCallback(MqMessagingSystem mqMessagingSystem, String defaultOutputQueue) {
+	MqResponseCallback(MqMessagingSystem mqMessagingSystem, String defaultOutputDestination) {
 		this.mqMessagingSystem = mqMessagingSystem;
-		this.defaultOutputQueue = defaultOutputQueue;
+		this.defaultOutputDestination = defaultOutputDestination;
 	}
 
 	@Override
@@ -26,24 +27,25 @@ public class MqResponseCallback implements ResponseCallBack {
 		try {
 			log.debug("Processing callback");
 			Parameter destinationParameter = message.getContextValue(new ContextLocation(RESPONSE_METADATA_CONTEXT, JMS_DESTINATION));
-			String destination = destinationParameter != null ? stringify(destinationParameter.getValue()) : defaultOutputQueue;
+			String destination = destinationParameter != null ? stringify(destinationParameter.getValue()) : defaultOutputDestination;
 
 			if(destinationParameter != null) {
 				log.debug("Overriding jms destination with parameter value '" + destination + "'");
 			}
 
-			QueueSession session = mqMessagingSystem.getConnection().createQueueSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
-			QueueSender sender = session.createSender(session.createQueue(destination));
-			javax.jms.TextMessage jmsMessage = mqMessagingSystem.createTextMessage();
+			Session session = mqMessagingSystem.getConnection().createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
+			MessageProducer producer = session.createProducer(mqMessagingSystem.createDestination(destination));
+
+			TextMessage jmsMessage = mqMessagingSystem.createTextMessage();
 
 			log.debug("Applying message data to jms message");
-			applyResponseData(message, jmsMessage);
+			applyResponseData(message, jmsMessage, mqMessagingSystem);
 
 			log.debug("Adding response payload to jms message");
 			jmsMessage.setText(stringify(value));
 
 			log.debug("Sending response message");
-			sender.send(jmsMessage);
+			producer.send(jmsMessage);
 			session.close();
 		} catch (JMSException e) {
 			e.printStackTrace();

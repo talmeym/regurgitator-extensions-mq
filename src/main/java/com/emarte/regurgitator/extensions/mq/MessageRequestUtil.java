@@ -12,22 +12,22 @@ import static com.emarte.regurgitator.core.Log.getLog;
 import static com.emarte.regurgitator.core.StringType.stringify;
 import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
 
-public class MessageRequestUtil {
+class MessageRequestUtil {
 	private static final Log log = getLog(MessageRequestUtil.class);
 
-	public static void applyRequestData(Message message, TextMessage jmsMessage) throws JMSException, RegurgitatorException {
+	static void applyRequestData(Message message, TextMessage jmsMessage) throws JMSException, RegurgitatorException {
 		addMessageMetadata(message, jmsMessage);
 		addMessageProperties(message, jmsMessage);
 		addPayload(message, jmsMessage);
 	}
 
-	public static void addMessageMetadata(Message message, TextMessage jmsMessage) throws JMSException, RegurgitatorException {
+	private static void addMessageMetadata(Message message, TextMessage jmsMessage) throws JMSException, RegurgitatorException {
 		log.debug("Adding metadata to message from jms message");
 		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_MESSAGE_ID, jmsMessage.getJMSMessageID());
 		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_TYPE, jmsMessage.getJMSType());
 		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_DESTINATION, String.valueOf(jmsMessage.getJMSDestination()));
 		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_CORRELATION_ID, jmsMessage.getJMSCorrelationID());
-		addIntegerParam(message, REQUEST_METADATA_CONTEXT, JMS_DELIVERY_MODEL, jmsMessage.getJMSDeliveryMode());
+		addIntegerParam(message, REQUEST_METADATA_CONTEXT, JMS_DELIVERY_MODE, jmsMessage.getJMSDeliveryMode());
 		addLongParam(message, REQUEST_METADATA_CONTEXT, JMS_EXPIRATION, jmsMessage.getJMSExpiration());
 		addIntegerParam(message, REQUEST_METADATA_CONTEXT, JMS_PRIORITY, jmsMessage.getJMSPriority());
 		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_REDELiVERED, String.valueOf(jmsMessage.getJMSRedelivered()));

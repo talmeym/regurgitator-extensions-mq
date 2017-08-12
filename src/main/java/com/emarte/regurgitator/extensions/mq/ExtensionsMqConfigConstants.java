@@ -11,9 +11,9 @@ public interface ExtensionsMqConfigConstants {
 	// metadata
 	public static final String JMS_MESSAGE_ID = "jms-message-id";
 	public static final String JMS_TYPE = "jms-type";
-	public static final String JMS_CORRELATION_ID = "jms-correlation-id";
 	public static final String JMS_DESTINATION = "jms-destination";
-	public static final String JMS_DELIVERY_MODEL = "jms-delivery-mode";
+	public static final String JMS_CORRELATION_ID = "jms-correlation-id";
+	public static final String JMS_DELIVERY_MODE = "jms-delivery-mode";
 	public static final String JMS_EXPIRATION = "jms-expiration";
 	public static final String JMS_PRIORITY = "jms-priority";
 	public static final String JMS_REDELiVERED = "jms-redelivered";
