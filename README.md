@@ -26,6 +26,6 @@ Regurgitator maps the following java jms attributes to message parameters:
 ## steps
 
 regurgitator-extensions-mq provides the following steps:
-- ``create-jms-response`` ([xml](https://github.com/talmeym/regurgitator-extensions-mq-xml#create-jms-response), [json](https://github.com/talmeym/regurgitator-extensions-mq-json#create-jms-response)) create a response, pre-populating parameters for jms destination, correlation id and message type
+- ``create-jms-response`` ([xml](https://github.com/talmeym/regurgitator-extensions-mq-xml#create-jms-response), [json](https://github.com/talmeym/regurgitator-extensions-mq-json#create-jms-response), [yml](https://github.com/talmeym/regurgitator-extensions-mq-yml#create-jms-response)) create a response, pre-populating parameters for jms destination, correlation id and message type
 
 
