@@ -23,6 +23,7 @@ Regurgitator maps the following java jms attributes to request message parameter
 |``Message.JMSReplyTo``|``request-metadata``|``jms-reply-to``|``STRING``|
 |``Message.JMSTimestamp``|``request-metadata``|``jms-timestamp``|``STRING``|
 
+
 The same attribute list are also mapped to response parameters:
 
 |attribute|context|parameter|type|
