@@ -8,7 +8,7 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 ### request mappings
 
-Regurgitator maps the following java jms attributes to request message parameters:
+Regurgitator maps the following incoming jms attributes to request message parameters:
 
 |attribute|context|parameter|type|
 |---|---|---|---|
@@ -23,8 +23,9 @@ Regurgitator maps the following java jms attributes to request message parameter
 |``Message.JMSReplyTo``|``request-metadata``|``jms-reply-to``|``STRING``|
 |``Message.JMSTimestamp``|``request-metadata``|``jms-timestamp``|``STRING``|
 
+### response mappings
 
-The same attribute list are also mapped to response parameters:
+The same jms attribute set can also be explicitly set as response parameters:
 
 |attribute|context|parameter|type|
 |---|---|---|---|
