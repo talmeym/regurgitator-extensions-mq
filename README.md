@@ -8,7 +8,7 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 ### request mappings
 
-Regurgitator maps the following java jms attributes to message parameters:
+Regurgitator maps the following incoming jms attributes to request message parameters:
 
 |attribute|context|parameter|type|
 |---|---|---|---|
@@ -22,6 +22,23 @@ Regurgitator maps the following java jms attributes to message parameters:
 |``Message.JMSRedelivered``|``request-metadata``|``jms-redelivered``|``STRING``|
 |``Message.JMSReplyTo``|``request-metadata``|``jms-reply-to``|``STRING``|
 |``Message.JMSTimestamp``|``request-metadata``|``jms-timestamp``|``STRING``|
+
+### response mappings
+
+The same jms attribute set can also be explicitly set as response parameters:
+
+|attribute|context|parameter|type|
+|---|---|---|---|
+|``Message.JMSMessageID``|``response-metadata``|``jms-message-id``|``STRING``|
+|``Message.JMSType``|``response-metadata``|``jms-type``|``STRING``|
+|``Message.JMSCorrelationID``|``response-metadata``|``jms-correlation-id``|``STRING``|
+|``Message.JMSDestination``|``response-metadata``|``jms-destination``|``STRING``|
+|``Message.JMSDeliveryMode``|``response-metadata``|``jms-delivery-mode``|``STRING``|
+|``Message.JMSExpiration``|``response-metadata``|``jms-expiration``|``STRING``|
+|``Message.JMSPriority``|``response-metadata``|``jms-priority``|``STRING``|
+|``Message.JMSRedelivered``|``response-metadata``|``jms-redelivered``|``STRING``|
+|``Message.JMSReplyTo``|``response-metadata``|``jms-reply-to``|``STRING``|
+|``Message.JMSTimestamp``|``response-metadata``|``jms-timestamp``|``STRING``|
 
 ## steps
 
