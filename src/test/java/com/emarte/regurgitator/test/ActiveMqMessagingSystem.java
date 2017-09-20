@@ -3,9 +3,13 @@ package com.emarte.regurgitator.test;
 import com.emarte.regurgitator.core.Log;
 import com.emarte.regurgitator.extensions.mq.MqMessagingSystem;
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.command.*;
+import org.apache.activemq.command.ActiveMQDestination;
+import org.apache.activemq.command.ActiveMQTextMessage;
 
-import javax.jms.*;
+import javax.jms.Connection;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
 
 import static org.apache.activemq.command.ActiveMQDestination.QUEUE_TYPE;
 
@@ -13,7 +17,7 @@ public class ActiveMqMessagingSystem implements MqMessagingSystem {
 	private static Log log = Log.getLog(ActiveMqMessagingSystem.class);
 
 	private final String brokerUri;
-	private QueueConnection connection;
+	private Connection connection;
 
 	public ActiveMqMessagingSystem(String brokerUri) throws JMSException {
 		this.brokerUri = brokerUri;
@@ -25,7 +29,7 @@ public class ActiveMqMessagingSystem implements MqMessagingSystem {
 			log.debug("Creating active mq broker connection");
 			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
 			connectionFactory.setBrokerURL(brokerUri);
-			connection = connectionFactory.createQueueConnection();
+			connection = connectionFactory.createConnection();
 			connection.start();
 			log.debug("Broker connection started");
 		}
