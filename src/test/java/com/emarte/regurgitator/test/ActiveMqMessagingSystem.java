@@ -14,7 +14,7 @@ import javax.jms.TextMessage;
 import static org.apache.activemq.command.ActiveMQDestination.QUEUE_TYPE;
 
 public class ActiveMqMessagingSystem implements MqMessagingSystem {
-	private static Log log = Log.getLog(ActiveMqMessagingSystem.class);
+	private static final Log log = Log.getLog(ActiveMqMessagingSystem.class);
 
 	private final String brokerUri;
 	private Connection connection;

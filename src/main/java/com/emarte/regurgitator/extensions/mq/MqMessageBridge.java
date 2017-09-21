@@ -8,7 +8,7 @@ import javax.jms.Session;
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 
 public class MqMessageBridge {
-	private static Log log = Log.getLog(MqMessageBridge.class);
+	private static final Log log = Log.getLog(MqMessageBridge.class);
 
 	public MqMessageBridge(MqMessagingSystem mqMessagingSystem, String inputDestination, String outputDestination, Regurgitator regurgitator) throws JMSException, RegurgitatorException {
 		log.debug("Creating message consumer");

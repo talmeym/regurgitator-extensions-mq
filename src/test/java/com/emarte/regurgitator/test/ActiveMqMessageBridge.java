@@ -8,7 +8,7 @@ import javax.jms.JMSException;
 import static com.emarte.regurgitator.core.ConfigurationFile.loadFile;
 
 public class ActiveMqMessageBridge {
-	private static Log log = Log.getLog(ActiveMqMessageBridge.class);
+	private static final Log log = Log.getLog(ActiveMqMessageBridge.class);
 
 	public static void main(String[] args) throws RegurgitatorException, JMSException {
 		String brokerUri = args[0];
