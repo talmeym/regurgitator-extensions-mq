@@ -6,6 +6,22 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 ## regurgitator over MQ
 
+### mq message bridge
+
+regurgitator supports operation over mq by first abstracting the mq system to be used out to an interface for you to provide an implementation of:
+
+```java
+package com.emarte.regurgitator.extensions.mq;
+
+import javax.jms.*;
+
+public interface MqMessagingSystem {
+	public Connection getConnection() throws JMSException;
+	public TextMessage createTextMessage();
+	public Destination createDestination(String destination);
+}
+```
+
 ### request mappings
 
 Regurgitator maps the following incoming jms attributes to request message parameters:
