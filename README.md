@@ -12,7 +12,7 @@ regurgitator supports operation over mq by providing an ``mq message bridge`` to
 
 the ``mq message bridge`` is made up of the following classes:
 
-### MqMessagingSystem
+#### MqMessagingSystem
 
 regurgitator abstracts the mq system to be used to an interface for you to implement with an mq of your choice.
 
