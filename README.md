@@ -6,7 +6,7 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 ## regurgitator over MQ
 
-***mq msg*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq msg***
+***mq req*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq res***
 
 regurgitator supports operation over mq by providing an ``mq message bridge`` to allow the capture of mq message from one queue or topic, the processing of that message through regurgitator and the subsequent placing of response messages onto another mq destination.
 
