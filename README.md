@@ -26,7 +26,7 @@ it then provides a ``mq message bridge`` to allow the capture of mq message from
 
 the ``mq message bridge`` is made up of the following classes:
 
-- ``MqResponseCallback(MqMessagingSystem mqSys, String defaultOutputDestination``
+- ``MqResponseCallback(MqMessagingSystem mqSys, String defaultOutputDestination)``
 
 the mq response callback take a response from regurgitator and converts it into an outgoing mq message
 
