@@ -12,7 +12,7 @@ regurgitator supports operation over mq by providing an ``mq message bridge`` to
 
 ### MqMessagingSystem
 
-regurgitator abstracts the mq system to be used to an interface for you to implement with a mq of your choice.
+regurgitator abstracts the mq system to be used to an interface for you to implement with an mq of your choice.
 
 ```java
 package com.emarte.regurgitator.extensions.mq;
