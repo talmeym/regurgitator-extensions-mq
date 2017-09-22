@@ -26,9 +26,17 @@ it then provides a ``mq message bridge`` to allow the capture of mq message from
 
 the ``mq message bridge`` is made up of the following classes:
 
-- MqResponseCallback(MqMessagingSystem mqSys, String defaultOutputDestination)
-- RegurgitatorMessageListener(Regurgitator regurg, ResponseCallBack callback)
-- MqMessageBridge(MqMessagingSystem mqSys, String inputDestination, String outputDestination, Regurgitator regurg)
+- ``MqResponseCallback(MqMessagingSystem mqSys, String defaultOutputDestination``
+
+the mq response callback take a response from regurgitator and converts it into an outgoing mq message
+
+- ``RegurgitatorMessageListener(Regurgitator regurg, ResponseCallBack callback)``
+
+the regurgitator message listener accepts incoming mq messages and passes them on to regurgitator as ``message`` objects
+
+- ``MqMessageBridge(MqMessagingSystem mqSys, String inputDestination, String outputDestination, Regurgitator regurg)``
+
+the message bridge creates a consumer on an input destination, adds a ``RegurgitatorMessageListener`` to it for accepting and passing messages to regurgitator, and gives the listener a ``MqResponseCallback`` to handle response coming back
 
 ### request mappings
 
