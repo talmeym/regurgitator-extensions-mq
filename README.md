@@ -22,6 +22,14 @@ public interface MqMessagingSystem {
 }
 ```
 
+it then provides a ``mq message bridge`` to allow the capture of mq message from one queue or topic, the processing of that message through regurgitator and the subsequent placing of response messages onto another mq destination.
+
+the ``mq message bridge`` is made up of the following classes:
+
+- MqResponseCallback(MqMessagingSystem mqSys, String defaultOutputDestination)
+- RegurgitatorMessageListener(Regurgitator regurg, ResponseCallBack callback)
+- MqMessageBridge(MqMessagingSystem mqSys, String inputDestination, String outputDestination, Regurgitator regurg)
+
 ### request mappings
 
 Regurgitator maps the following incoming jms attributes to request message parameters:
