@@ -6,9 +6,9 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 ## regurgitator over MQ
 
-***mq msg*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq msg***
-
 ### mq message bridge
+
+***mq msg*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq msg***
 
 regurgitator supports operation over mq by first abstracting the mq system to be used out to an interface for you to provide an implementation of:
 
