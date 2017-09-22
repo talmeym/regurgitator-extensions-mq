@@ -8,9 +8,13 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 ***mq msg*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq msg***
 
+### mq message bridge
+
+regurgitator supports operation over mq by providing a ``mq message bridge`` to allow the capture of mq message from one queue or topic, the processing of that message through regurgitator and the subsequent placing of response messages onto another mq destination.
+
 ### MqMessagingSystem
 
-regurgitator supports operation over mq by first abstracting the mq system to be used out to an interface for you to implement with a mq system of your choice.
+regurgitator abstracts the mq system to be used to an interface for you to implement with a mq of your choice.
 
 ```java
 package com.emarte.regurgitator.extensions.mq;
@@ -24,9 +28,7 @@ public interface MqMessagingSystem {
 }
 ```
 
-### mq message bridge
 
-it then provides a ``mq message bridge`` to allow the capture of mq message from one queue or topic, the processing of that message through regurgitator and the subsequent placing of response messages onto another mq destination.
 
 the ``mq message bridge`` is made up of the following classes:
 
