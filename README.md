@@ -8,7 +8,7 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 ***mq msg*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq msg***
 
-#### MqMessagingSystem
+### MqMessagingSystem
 
 regurgitator supports operation over mq by first abstracting the mq system to be used out to an interface for you to implement with a mq system of your choice.
 
@@ -30,15 +30,15 @@ it then provides a ``mq message bridge`` to allow the capture of mq message from
 
 the ``mq message bridge`` is made up of the following classes:
 
-#### MqResponseCallback(MqMessagingSystem mqSys, String defaultOutputDestination)
+### MqResponseCallback(MqMessagingSystem mqSys, String defaultOutputDestination)
 
 the mq response callback take a response from regurgitator and converts it into an outgoing mq message
 
-#### RegurgitatorMessageListener(Regurgitator regurg, ResponseCallBack callback)
+### RegurgitatorMessageListener(Regurgitator regurg, ResponseCallBack callback)
 
 the regurgitator message listener accepts incoming mq messages and passes them on to regurgitator as ``message`` objects
 
-#### MqMessageBridge(MqMessagingSystem mqSys, String inputDestination, String outputDestination, Regurgitator regurg)
+### MqMessageBridge(MqMessagingSystem mqSys, String inputDestination, String outputDestination, Regurgitator regurg)
 
 the mq message bridge uses a ``MqMessagingSystem`` to create a consumer on an input destination, adds a ``RegurgitatorMessageListener`` to it for accepting messages and passing them to regurgitator, and gives that regurgitator a ``MqResponseCallback`` to handle putting responses onto a output destination.
 
