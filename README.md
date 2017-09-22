@@ -6,7 +6,7 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 ## regurgitator over MQ
 
-***input mq msg*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***output mq msg***
+***mq msg*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq msg***
 
 ### mq message bridge
 
