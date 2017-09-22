@@ -8,7 +8,7 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 ***mq req*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq res***
 
-regurgitator supports operation over mq by providing an ``mq message bridge`` to allow the capture of an mq request from one queue or topic, the processing of that request as a message through regurgitator and the subsequent placing of responses onto another mq destination.
+regurgitator supports operation over mq by providing an ``mq message bridge`` to allow the capture of an mq request from one queue or topic, the processing of that request as a message through regurgitator and the subsequent placing of any response onto another mq destination.
 
 the ``mq message bridge`` is made up of the following classes:
 
