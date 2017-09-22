@@ -10,6 +10,8 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 regurgitator supports operation over mq by providing an ``mq message bridge`` to allow the capture of mq message from one queue or topic, the processing of that message through regurgitator and the subsequent placing of response messages onto another mq destination.
 
+the ``mq message bridge`` is made up of the following classes:
+
 ### MqMessagingSystem
 
 regurgitator abstracts the mq system to be used to an interface for you to implement with an mq of your choice.
@@ -25,10 +27,6 @@ public interface MqMessagingSystem {
 	public Destination createDestination(String destination);
 }
 ```
-
-
-
-the ``mq message bridge`` is made up of the following classes:
 
 #### MqResponseCallback(MqMessagingSystem mqSys, String defaultOutputDestination)
 
