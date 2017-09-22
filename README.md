@@ -36,7 +36,7 @@ the mq response callback take a response from regurgitator and converts it into 
 
 the regurgitator message listener accepts incoming mq messages and passes them on to regurgitator as ``message`` objects
 
-#### MqMessageBridge(MqMessagingSystem mqSys, String inputDestination, String outputDestination, Regurgitator regurg)
+#### MqMessageBridge(MqMessagingSystem mqSys, String inputDest, String outputDest, Regurgitator regurg)
 
 the mq message bridge uses a ``MqMessagingSystem`` to create a consumer on an input destination, adds a ``RegurgitatorMessageListener`` to it for accepting messages and passing them to regurgitator, and gives that regurgitator a ``MqResponseCallback`` to handle putting responses onto a output destination.
 
