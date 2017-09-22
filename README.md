@@ -10,7 +10,9 @@ start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitat
 
 ***mq msg*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq msg***
 
-regurgitator supports operation over mq by first abstracting the mq system to be used out to an interface for you to provide an implementation of:
+#### MqMessagingSystem
+
+regurgitator supports operation over mq by first abstracting the mq system to be used out to an interface for you to implement with a mq system of your choice.
 
 ```java
 package com.emarte.regurgitator.extensions.mq;
