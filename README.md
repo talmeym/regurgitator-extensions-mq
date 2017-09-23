@@ -42,6 +42,10 @@ the regurgitator message listener accepts incoming mq messages and passes them o
 
 the mq message bridge uses a ``MqMessagingSystem`` to create a consumer on an input destination, adds a ``RegurgitatorMessageListener`` to it for accepting requests and passing them as messages to regurgitator, and gives regurgitator a ``MqResponseCallback`` to handle putting responses to an output destination.
 
+### example
+
+an example of usin the mq message brige with ActiveMQ can be found [here](https://github.com/talmeym/regurgitator-extensions-mq/tree/master/src/test/java/com/emarte/regurgitator/test) 
+
 ### request mappings
 
 Regurgitator maps the following incoming jms attributes to request message parameters:
