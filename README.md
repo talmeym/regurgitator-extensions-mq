@@ -30,7 +30,7 @@ public interface MqMessagingSystem {
 }
 ```
 
-#### MqResponseCallback(MqMessagingSystem mqSys, String defaultOutputDestination)
+#### MqResponseCallback(MqMessagingSystem mqSys, String defaultOutputDest)
 
 the mq response callback take a response from regurgitator and converts it into an outgoing mq message
 
