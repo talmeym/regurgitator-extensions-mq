@@ -44,7 +44,7 @@ the mq message bridge uses a ``MqMessagingSystem`` to create a consumer on an in
 
 ### example
 
-an example of using the mq message brige with `ActiveMQ`` can be found [here](https://github.com/talmeym/regurgitator-extensions-mq/tree/master/src/test/java/com/emarte/regurgitator/test)
+an example of using the mq message brige with ``ActiveMQ`` can be found [here](https://github.com/talmeym/regurgitator-extensions-mq/tree/master/src/test/java/com/emarte/regurgitator/test)
 
 ### request mappings
 
