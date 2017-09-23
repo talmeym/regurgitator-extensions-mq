@@ -4,7 +4,7 @@ regurgitator is a lightweight, modular, extendable java framework that you confi
 
 start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitator-all#regurgitator)
 
-## regurgitator over MQ
+## regurgitator over mq
 
 regurgitator allows the mocking of mq services by providing an ``mq message bridge`` to allow the capture of an mq request from one queue or topic, the processing of that request as a message through regurgitator and the subsequent placing of any response on another mq destination.
 
