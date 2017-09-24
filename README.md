@@ -12,7 +12,7 @@ regurgitator allows the mocking of mq services by providing an ``mq message brid
 
 ***mq req*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq res***
 
-the ``mq message bridge`` is made up of the following components:
+the ``mq message bridge`` is made up of the following classes:
 
 #### MqMessagingSystem
 
