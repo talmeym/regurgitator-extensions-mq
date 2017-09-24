@@ -32,11 +32,11 @@ public interface MqMessagingSystem {
 
 #### MqResponseCallback(MqMessagingSystem mqSys, String outputDest)
 
-the mq response callback takes a response from regurgitator and converts it into an outgoing mq message
+the mq response callback takes a response from regurgitator and converts it into an outgoing mq message.
 
 #### RegurgitatorMessageListener(Regurgitator regurg, ResponseCallBack callback)
 
-the regurgitator message listener accepts incoming mq messages and passes them on to regurgitator as ``message`` objects
+the regurgitator message listener accepts incoming mq messages and passes them on to regurgitator as ``message`` objects.
 
 #### MqMessageBridge(MqMessagingSystem mqSys, String inputDest, String outputDest, Regurgitator regurg)
 
