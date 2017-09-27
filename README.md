@@ -4,7 +4,47 @@ regurgitator is a lightweight, modular, extendable java framework that you confi
 
 start your reading here: [regurgitator-all](http://github.com/talmeym/regurgitator-all#regurgitator)
 
-## regurgitator over MQ
+## regurgitator over mq
+
+regurgitator allows the mocking of mq services by providing an ``mq message bridge`` to allow the capture of an mq request from one queue or topic, the processing of that request through regurgitator and the subsequent placing of any response onto another mq destination.
+
+### mq message bridge
+
+***mq req*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq res***
+
+the ``mq message bridge`` is made up of the following classes:
+
+#### MqMessagingSystem
+
+regurgitator abstracts the mq system to be used to an interface for you to implement with an mq of your choice.
+
+```java
+package com.emarte.regurgitator.extensions.mq;
+
+import javax.jms.*;
+
+public interface MqMessagingSystem {
+	public Connection getConnection() throws JMSException;
+	public TextMessage createTextMessage();
+	public Destination createDestination(String destination);
+}
+```
+
+#### MqResponseCallback(MqMessagingSystem mqSys, String outputDest)
+
+the mq response callback takes a response from regurgitator and converts it into an outgoing mq message.
+
+#### RegurgitatorMessageListener(Regurgitator regurg, ResponseCallBack callback)
+
+the regurgitator message listener accepts incoming mq messages and passes them on to regurgitator as ``message`` objects.
+
+#### MqMessageBridge(MqMessagingSystem mqSys, String inputDest, String outputDest, Regurgitator regurg)
+
+the mq message bridge uses a ``MqMessagingSystem`` to create a consumer on an input destination, adds a ``RegurgitatorMessageListener`` to it for accepting requests and passing them as messages to regurgitator, and gives regurgitator a ``MqResponseCallback`` to handle putting responses to an output destination.
+
+### example
+
+an example of using the mq message brige with ``ActiveMQ`` can be found [here](https://github.com/talmeym/regurgitator-extensions-mq/tree/master/src/test/java/com/emarte/regurgitator/test). this example can be run with the following [configuration file](https://github.com/talmeym/regurgitator-extensions-mq/blob/master/src/test/resources/rock-paper-scissors-over-mq.xml) to play a famous game over mq.
 
 ### request mappings
 

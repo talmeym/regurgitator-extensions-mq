@@ -44,5 +44,12 @@
 			<artifactId>regurgitator-core-config</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.emarte.regurgitator</groupId>
+			<artifactId>regurgitator-extensions-xml</artifactId>
+			<version>0.0.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>
