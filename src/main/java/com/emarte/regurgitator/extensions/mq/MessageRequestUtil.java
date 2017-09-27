@@ -25,13 +25,13 @@ class MessageRequestUtil {
 		log.debug("Adding metadata to message from jms message");
 		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_MESSAGE_ID, jmsMessage.getJMSMessageID());
 		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_TYPE, jmsMessage.getJMSType());
-		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_DESTINATION, String.valueOf(jmsMessage.getJMSDestination()));
+		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_DESTINATION, stringify(jmsMessage.getJMSDestination()));
 		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_CORRELATION_ID, jmsMessage.getJMSCorrelationID());
 		addIntegerParam(message, REQUEST_METADATA_CONTEXT, JMS_DELIVERY_MODE, jmsMessage.getJMSDeliveryMode());
 		addLongParam(message, REQUEST_METADATA_CONTEXT, JMS_EXPIRATION, jmsMessage.getJMSExpiration());
 		addIntegerParam(message, REQUEST_METADATA_CONTEXT, JMS_PRIORITY, jmsMessage.getJMSPriority());
-		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_REDELiVERED, String.valueOf(jmsMessage.getJMSRedelivered()));
-		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_REPLY_TO, String.valueOf(jmsMessage.getJMSReplyTo()));
+		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_REDELiVERED, stringify(jmsMessage.getJMSRedelivered()));
+		addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_REPLY_TO, stringify(jmsMessage.getJMSReplyTo()));
 		addLongParam(message, REQUEST_METADATA_CONTEXT, JMS_TIMESTAMP, jmsMessage.getJMSTimestamp());
 	}
 

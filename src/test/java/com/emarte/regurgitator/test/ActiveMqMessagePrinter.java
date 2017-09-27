@@ -3,6 +3,8 @@ package com.emarte.regurgitator.test;
 import javax.jms.*;
 import java.util.*;
 
+import static com.emarte.regurgitator.core.StringType.stringify;
+
 public class ActiveMqMessagePrinter {
 	public static void main(String[] args) throws JMSException {
 		String brokerUri = args[0];
@@ -18,45 +20,24 @@ public class ActiveMqMessagePrinter {
 				TextMessage textMessage = (TextMessage) message;
 
 				try {
-					String text = textMessage.getText();
-					System.out.println("\ntext: " + text);
-
-					String messageID = textMessage.getJMSMessageID();
-					System.out.println("jms-message-id: " + messageID);
-
-					String type = textMessage.getJMSType();
-					System.out.println("type: " + type);
-
-					String destination = String.valueOf(textMessage.getJMSDestination());
-					System.out.println("destination: " + destination);
-
-					String correlationID = textMessage.getJMSCorrelationID();
-					System.out.println("correlation-id: " + correlationID);
-
-					int deliveryMode = textMessage.getJMSDeliveryMode();
-					System.out.println("delivery-mode: " + deliveryMode);
-
+					System.out.println("\ntext: " + textMessage.getText());
+					System.out.println("jms-message-id: " + textMessage.getJMSMessageID());
+					System.out.println("type: " + textMessage.getJMSType());
+					System.out.println("destination: " + stringify(textMessage.getJMSDestination()));
+					System.out.println("correlation-id: " + textMessage.getJMSCorrelationID());
+					System.out.println("delivery-mode: " + textMessage.getJMSDeliveryMode());
 					long expiration = textMessage.getJMSExpiration();
 					System.out.println("expiration: " + (expiration != 0 ? new Date(expiration).toString() : expiration) + " (now:" + new Date() + ")");
-
-					int priority = textMessage.getJMSPriority();
-					System.out.println("priority: " + priority);
-
-					boolean redelivered = textMessage.getJMSRedelivered();
-					System.out.println("redelivered: " + redelivered);
-
-					String replyTo = String.valueOf(textMessage.getJMSReplyTo());
-					System.out.println("replyTo: " + replyTo);
-
-					long timestamp = textMessage.getJMSTimestamp();
-					System.out.println("timestamp: " + timestamp);
+					System.out.println("priority: " + textMessage.getJMSPriority());
+					System.out.println("redelivered: " + textMessage.getJMSRedelivered());
+					System.out.println("replyTo: " + stringify(textMessage.getJMSReplyTo()));
+					System.out.println("timestamp: " + textMessage.getJMSTimestamp());
 
 					Enumeration enumeration = textMessage.getPropertyNames();
 
 					while(enumeration.hasMoreElements()) {
 						String name = (String) enumeration.nextElement();
-						Object value = textMessage.getObjectProperty(name);
-						System.out.println("property[" + name + "]: " + String.valueOf(value));
+						System.out.println("property[" + name + "]: " + stringify(textMessage.getObjectProperty(name)));
 					}
 
 					System.out.println("\n======================");
