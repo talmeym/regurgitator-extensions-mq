@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (C) 2017 Miles Talmey.-->
+<!--Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).-->
 <rg:regurgitator-configuration xmlns:rg="http://core.regurgitator.emarte.com" xmlns:rge="http://extensions.regurgitator.emarte.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 							   xsi:schemaLocation="http://core.regurgitator.emarte.com regurgitatorCore.xsd http://extensions.regurgitator.emarte.com regurgitatorExtensions.xsd" id="rock-paper-scissors">
 
