@@ -49,7 +49,7 @@ public class ActiveMqMessagingSystem implements MqMessagingSystem {
 
     @Override
     public Destination createDestination(String destination) {
-        log.debug("Creating destination '" + destination + "'");
+        log.debug("Creating destination '{}'", destination);
         return ActiveMQDestination.createDestination(destination, /* default */ QUEUE_TYPE);
     }
 }
