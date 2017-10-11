@@ -5,7 +5,7 @@
 package com.emarte.regurgitator.test;
 
 import com.emarte.regurgitator.core.*;
-import com.emarte.regurgitator.extensions.mq.*;
+import com.emarte.regurgitator.extensions.mq.MqMessageBridge;
 
 import javax.jms.JMSException;
 

@@ -5,7 +5,8 @@
 package com.emarte.regurgitator.test;
 
 import javax.jms.*;
-import java.util.*;
+import java.util.Date;
+import java.util.Enumeration;
 
 import static com.emarte.regurgitator.core.StringType.stringify;
 

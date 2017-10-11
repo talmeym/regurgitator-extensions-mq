@@ -10,10 +10,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQDestination;
 import org.apache.activemq.command.ActiveMQTextMessage;
 
-import javax.jms.Connection;
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.TextMessage;
+import javax.jms.*;
 
 import static org.apache.activemq.command.ActiveMQDestination.QUEUE_TYPE;
 

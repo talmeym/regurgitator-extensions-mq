@@ -5,9 +5,9 @@
 package com.emarte.regurgitator.extensions.mq;
 
 import com.emarte.regurgitator.core.*;
-import com.emarte.regurgitator.core.Message;
 
-import javax.jms.*;
+import javax.jms.MessageListener;
+import javax.jms.TextMessage;
 
 import static com.emarte.regurgitator.core.Log.getLog;
 import static com.emarte.regurgitator.extensions.mq.MessageRequestUtil.applyRequestData;

@@ -4,14 +4,15 @@
  */
 package com.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.*;
+import com.emarte.regurgitator.core.Log;
 import com.emarte.regurgitator.core.Message;
 
-import javax.jms.*;
-
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
 import java.util.Enumeration;
 
-import static com.emarte.regurgitator.core.CoreTypes.*;
+import static com.emarte.regurgitator.core.CoreTypes.NUMBER;
+import static com.emarte.regurgitator.core.CoreTypes.STRING;
 import static com.emarte.regurgitator.core.Log.getLog;
 import static com.emarte.regurgitator.core.StringType.stringify;
 import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;

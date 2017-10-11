@@ -4,10 +4,10 @@
  */
 package com.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.*;
+import com.emarte.regurgitator.core.Log;
+import com.emarte.regurgitator.core.Regurgitator;
 
 import javax.jms.*;
-import javax.jms.Session;
 
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 
