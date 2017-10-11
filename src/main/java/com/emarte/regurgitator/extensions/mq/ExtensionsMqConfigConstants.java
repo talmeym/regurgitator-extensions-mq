@@ -5,14 +5,11 @@
 package com.emarte.regurgitator.extensions.mq;
 
 public interface ExtensionsMqConfigConstants {
-    // contexts
     String REQUEST_METADATA_CONTEXT = "request-metadata";
     String REQUEST_PROPERTIES_CONTEXT = "request-properties";
     String REQUEST_PAYLOAD_CONTEXT = "request-payload";
     String RESPONSE_METADATA_CONTEXT = "response-metadata";
     String RESPONSE_PROPERTIES_CONTEXT = "response-properties";
-
-    // metadata
     String JMS_MESSAGE_ID = "jms-message-id";
     String JMS_TYPE = "jms-type";
     String JMS_DESTINATION = "jms-destination";
