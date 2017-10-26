@@ -1,0 +1,57 @@
+/*
+ * Copyright (C) 2017 Miles Talmey.
+ * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
+ */
+package com.emarte.regurgitator.test;
+
+import com.emarte.regurgitator.core.*;
+import com.emarte.regurgitator.extensions.mq.CreateJmsResponse;
+import com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants;
+import org.junit.Test;
+
+import java.util.BitSet;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+public class CreateJmsResponseTest {
+
+    private static final String VALUE = "value";
+    private static final String MESSAGE_ID = "messageId";
+    private static final String MESSAGE_TYPE = "messageType";
+    private static final String DESTINATION = "destination";
+    private static final String CORRELATION_ID = "correlationId";
+    private static final String DELIVERY_MODE = "deliveryMode";
+    private static final String EXPIRATION = "expiration";
+    private static final String PRIORITY = "priority";
+    private static final String REDELIVERED = "redelivered";
+    private static final String REPLY_TO = "replyTo";
+    private static final String TIMESTAMP = "timestamp";
+
+    @Test
+    public void testThis() throws RegurgitatorException {
+        CreateJmsResponse toTest = new CreateJmsResponse(new CreateResponse("id", new ValueSource(null, VALUE), null), MESSAGE_ID, MESSAGE_TYPE, DESTINATION, CORRELATION_ID, DELIVERY_MODE, EXPIRATION, PRIORITY, REDELIVERED, REPLY_TO, TIMESTAMP);
+        final BitSet marker = new BitSet(1);
+
+        toTest.execute(new Message(new ResponseCallBack() {
+            @Override
+            public void respond(Message message, Object value) {
+                marker.set(0);
+                assertEquals(VALUE, value);
+                Parameters responseMetaDataContext = message.getContext(ExtensionsMqConfigConstants.RESPONSE_METADATA_CONTEXT);
+                assertEquals(MESSAGE_ID, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_MESSAGE_ID));
+                assertEquals(MESSAGE_TYPE, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_TYPE));
+                assertEquals(DESTINATION, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_DESTINATION));
+                assertEquals(CORRELATION_ID, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_CORRELATION_ID));
+                assertEquals(DELIVERY_MODE, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_DELIVERY_MODE));
+                assertEquals(EXPIRATION, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_EXPIRATION));
+                assertEquals(PRIORITY, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_PRIORITY));
+                assertEquals(REDELIVERED, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_REDELIVERED));
+                assertEquals(REPLY_TO, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_REPLY_TO));
+                assertEquals(TIMESTAMP, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_TIMESTAMP));
+            }
+        }));
+
+        assertTrue(marker.get(0));
+    }
+}
