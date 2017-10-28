@@ -12,16 +12,17 @@ import org.apache.activemq.command.ActiveMQTextMessage;
 
 import javax.jms.*;
 
+import java.util.Properties;
+
 import static org.apache.activemq.command.ActiveMQDestination.QUEUE_TYPE;
 
 public class ActiveMqMessagingSystem implements MqMessagingSystem {
     private static final Log log = Log.getLog(ActiveMqMessagingSystem.class);
-
-    private final String brokerUri;
+    private final Properties properties;
     private Connection connection;
 
-    public ActiveMqMessagingSystem(String brokerUri) {
-        this.brokerUri = brokerUri;
+    public ActiveMqMessagingSystem(Properties properties) {
+        this.properties = properties;
     }
 
     @Override
@@ -29,7 +30,7 @@ public class ActiveMqMessagingSystem implements MqMessagingSystem {
         if(connection == null) {
             log.debug("Creating active mq broker connection");
             ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-            connectionFactory.setBrokerURL(brokerUri);
+            connectionFactory.setProperties(properties);
             connection = connectionFactory.createConnection();
             connection.start();
             log.debug("Broker connection started");

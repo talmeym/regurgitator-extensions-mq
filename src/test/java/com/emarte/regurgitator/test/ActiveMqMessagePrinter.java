@@ -7,21 +7,22 @@ package com.emarte.regurgitator.test;
 import com.emarte.regurgitator.core.Log;
 
 import javax.jms.*;
-import java.util.Date;
-import java.util.Enumeration;
+import java.io.*;
+import java.util.*;
 
 import static com.emarte.regurgitator.core.StringType.stringify;
 
 public class ActiveMqMessagePrinter {
     private static final Log log = Log.getLog(ActiveMqMessagePrinter.class);
     
-    public static void main(String[] args) throws JMSException {
-        String brokerUri = args[0];
-        String inputQueue = args[1];
+    public static void main(String[] args) throws JMSException, IOException {
+        log.debug("Loading activemq config");
+        Properties properties = new Properties();
+        properties.load(new FileInputStream(args[0]));
 
-        Connection connection = new ActiveMqMessagingSystem(brokerUri).getConnection();
+        Connection connection = new ActiveMqMessagingSystem(properties).getConnection();
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        MessageConsumer consumer = session.createConsumer(session.createQueue(inputQueue));
+        MessageConsumer consumer = session.createConsumer(session.createQueue(args[1]));
 
         consumer.setMessageListener(new MessageListener() {
             @Override
