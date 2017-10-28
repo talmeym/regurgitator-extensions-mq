@@ -52,7 +52,7 @@ class MessageResponseUtil {
         if(context.contains(JMS_DELIVERY_MODE)) {
             Object value = context.getValue(JMS_DELIVERY_MODE);
             log.debug("Setting jms delivery mode '" + value + "'");
-            jmsMessage.setJMSDeliveryMode(intify(value));
+            jmsMessage.setJMSDeliveryMode(longify(value).intValue());
         }
 
         if(context.contains(JMS_EXPIRATION)) {
@@ -64,7 +64,7 @@ class MessageResponseUtil {
         if(context.contains(JMS_PRIORITY)) {
             Object value = context.getValue(JMS_PRIORITY);
             log.debug("Setting jms priority '" + value + "'");
-            jmsMessage.setJMSPriority(intify(value));
+            jmsMessage.setJMSPriority(longify(value).intValue());
         }
 
         if(context.contains(JMS_REDELIVERED)) {
@@ -86,15 +86,11 @@ class MessageResponseUtil {
         }
     }
 
-    private static boolean boolify(Object value) {
+    private static Boolean boolify(Object value) {
         return Boolean.parseBoolean(stringify(value));
     }
 
-    private static int intify(Object value) {
-        return Integer.parseInt(stringify(value));
-    }
-
-    private static long longify(Object value) {
+    private static Long longify(Object value) {
         return Long.parseLong(stringify(value));
     }
 

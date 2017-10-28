@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.util.BitSet;
 
+import static java.lang.Boolean.TRUE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -21,12 +22,12 @@ public class CreateJmsResponseTest {
     private static final String MESSAGE_TYPE = "messageType";
     private static final String DESTINATION = "destination";
     private static final String CORRELATION_ID = "correlationId";
-    private static final String DELIVERY_MODE = "deliveryMode";
-    private static final String EXPIRATION = "expiration";
-    private static final String PRIORITY = "priority";
-    private static final String REDELIVERED = "redelivered";
+    private static final Long DELIVERY_MODE = 123L;
+    private static final Long EXPIRATION = 234L;
+    private static final Long PRIORITY = 345L;
+    private static final Boolean REDELIVERED = TRUE;
     private static final String REPLY_TO = "replyTo";
-    private static final String TIMESTAMP = "timestamp";
+    private static final Long TIMESTAMP = System.currentTimeMillis();
 
     @Test
     public void testThis() throws RegurgitatorException {
@@ -46,7 +47,7 @@ public class CreateJmsResponseTest {
                 assertEquals(DELIVERY_MODE, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_DELIVERY_MODE));
                 assertEquals(EXPIRATION, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_EXPIRATION));
                 assertEquals(PRIORITY, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_PRIORITY));
-                assertEquals(REDELIVERED, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_REDELIVERED));
+                assertEquals(String.valueOf(REDELIVERED), responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_REDELIVERED));
                 assertEquals(REPLY_TO, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_REPLY_TO));
                 assertEquals(TIMESTAMP, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_TIMESTAMP));
             }

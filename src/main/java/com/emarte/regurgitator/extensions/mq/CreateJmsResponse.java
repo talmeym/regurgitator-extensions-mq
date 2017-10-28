@@ -17,14 +17,14 @@ public class CreateJmsResponse extends Identifiable implements Step {
     private final String type;
     private final String destination;
     private final String correlationId;
-    private final Integer deliveryMode;
+    private final Long deliveryMode;
     private final Long expiration;
-    private final Integer priority;
+    private final Long priority;
     private final Boolean redelivered;
     private final String replyTo;
     private final Long timestamp;
 
-    public CreateJmsResponse(CreateResponse response, String messageId, String type, String destination, String correlationId, Integer deliveryMode, Long expiration, Integer priority, Boolean redelivered, String replyTo, Long timestamp) {
+    public CreateJmsResponse(CreateResponse response, String messageId, String type, String destination, String correlationId, Long deliveryMode, Long expiration, Long priority, Boolean redelivered, String replyTo, Long timestamp) {
         super(response.getId());
         this.response = response;
         this.messageId = messageId;
@@ -72,7 +72,7 @@ public class CreateJmsResponse extends Identifiable implements Step {
         }
 
         if(redelivered != null) {
-            responseMetadata.setValue(JMS_REDELIVERED, redelivered);
+            responseMetadata.setValue(JMS_REDELIVERED, String.valueOf(redelivered));
         }
 
         if(replyTo != null) {
@@ -80,7 +80,7 @@ public class CreateJmsResponse extends Identifiable implements Step {
         }
 
         if(timestamp != null) {
-            responseMetadata.setValue(JMS_TIMESTAMP, timestamp);
+            responseMetadata.setValue(JMS_TIMESTAMP, NUMBER, timestamp);
         }
 
         response.execute(message, log);
