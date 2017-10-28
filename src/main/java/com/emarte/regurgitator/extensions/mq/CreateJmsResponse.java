@@ -6,6 +6,7 @@ package com.emarte.regurgitator.extensions.mq;
 
 import com.emarte.regurgitator.core.*;
 
+import static com.emarte.regurgitator.core.CoreTypes.NUMBER;
 import static com.emarte.regurgitator.core.Log.getLog;
 import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
 
@@ -16,14 +17,14 @@ public class CreateJmsResponse extends Identifiable implements Step {
     private final String type;
     private final String destination;
     private final String correlationId;
-    private final String deliveryMode;
-    private final String expiration;
-    private final String priority;
-    private final String redelivered;
+    private final Integer deliveryMode;
+    private final Long expiration;
+    private final Integer priority;
+    private final Boolean redelivered;
     private final String replyTo;
-    private final String timestamp;
+    private final Long timestamp;
 
-    public CreateJmsResponse(CreateResponse response, String messageId, String type, String destination, String correlationId, String deliveryMode, String expiration, String priority, String redelivered, String replyTo, String timestamp) {
+    public CreateJmsResponse(CreateResponse response, String messageId, String type, String destination, String correlationId, Integer deliveryMode, Long expiration, Integer priority, Boolean redelivered, String replyTo, Long timestamp) {
         super(response.getId());
         this.response = response;
         this.messageId = messageId;
@@ -59,15 +60,15 @@ public class CreateJmsResponse extends Identifiable implements Step {
         }
 
         if(deliveryMode != null) {
-            responseMetadata.setValue(JMS_DELIVERY_MODE, deliveryMode);
+            responseMetadata.setValue(JMS_DELIVERY_MODE, NUMBER, deliveryMode);
         }
 
         if(expiration != null) {
-            responseMetadata.setValue(JMS_EXPIRATION, expiration);
+            responseMetadata.setValue(JMS_EXPIRATION, NUMBER, expiration);
         }
 
         if(priority != null) {
-            responseMetadata.setValue(JMS_PRIORITY, priority);
+            responseMetadata.setValue(JMS_PRIORITY, NUMBER, priority);
         }
 
         if(redelivered != null) {

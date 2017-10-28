@@ -58,7 +58,7 @@ class MessageResponseUtil {
         if(context.contains(JMS_EXPIRATION)) {
             Object value = context.getValue(JMS_EXPIRATION);
             log.debug("Setting jms expiration '" + value + "'");
-            jmsMessage.setJMSExpiration(intify(value));
+            jmsMessage.setJMSExpiration(longify(value));
         }
 
         if(context.contains(JMS_PRIORITY)) {
