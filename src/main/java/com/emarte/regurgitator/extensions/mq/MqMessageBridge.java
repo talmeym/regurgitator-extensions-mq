@@ -23,6 +23,6 @@ public class MqMessageBridge {
         log.debug("Setting up message listener");
         consumer.setMessageListener(new RegurgitatorMessageListener(regurgitator, new MqResponseCallback(mqMessagingSystem, outputDestination)));
 
-        log.debug("Awaiting jms messages");
+        log.info("Awaiting jms messages");
     }
 }

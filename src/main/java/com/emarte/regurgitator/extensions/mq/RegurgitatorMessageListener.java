@@ -10,7 +10,7 @@ import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
 import static com.emarte.regurgitator.core.Log.getLog;
-import static com.emarte.regurgitator.extensions.mq.MessageRequestUtil.applyRequestData;
+import static com.emarte.regurgitator.extensions.mq.MessageUtil.applyRequestData;
 
 public class RegurgitatorMessageListener implements MessageListener {
     private static final Log log = getLog(RegurgitatorMessageListener.class);
@@ -32,8 +32,8 @@ public class RegurgitatorMessageListener implements MessageListener {
             log.debug("Creating new message");
             Message newMessage = new Message(responseCallBack);
 
-            log.debug("Applying jms message details to message");
-            applyRequestData(newMessage, textMessage);
+            log.debug("Applying jms message data to message");
+            applyRequestData(textMessage, newMessage);
 
             log.debug("Sending message to regurgitator");
             regurgitator.processMessage(newMessage);

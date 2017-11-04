@@ -14,7 +14,7 @@ import static com.emarte.regurgitator.core.Log.getLog;
 import static com.emarte.regurgitator.core.StringType.stringify;
 import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.JMS_DESTINATION;
 import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.RESPONSE_METADATA_CONTEXT;
-import static com.emarte.regurgitator.extensions.mq.MessageResponseUtil.applyResponseData;
+import static com.emarte.regurgitator.extensions.mq.TextMessageUtil.applyResponseData;
 
 class MqResponseCallback implements ResponseCallBack {
     private static final Log log = getLog(MqResponseCallback.class);
@@ -34,12 +34,11 @@ class MqResponseCallback implements ResponseCallBack {
             String destination = destinationParameter != null ? stringify(destinationParameter.getValue()) : defaultOutputDestination;
 
             if(destinationParameter != null) {
-                log.debug("Overriding jms destination with parameter value '" + destination + "'");
+                log.debug("Overriding default jms destination '{}' with parameter value '{}'", defaultOutputDestination, destination);
             }
 
             Session session = mqMessagingSystem.getConnection().createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
             MessageProducer producer = session.createProducer(mqMessagingSystem.createDestination(destination));
-
             TextMessage jmsMessage = mqMessagingSystem.createTextMessage();
 
             log.debug("Applying message data to jms message");

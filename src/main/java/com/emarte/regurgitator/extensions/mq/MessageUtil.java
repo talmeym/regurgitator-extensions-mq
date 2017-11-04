@@ -17,16 +17,16 @@ import static com.emarte.regurgitator.core.Log.getLog;
 import static com.emarte.regurgitator.core.StringType.stringify;
 import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
 
-class MessageRequestUtil {
-    private static final Log log = getLog(MessageRequestUtil.class);
+class MessageUtil {
+    private static final Log log = getLog(MessageUtil.class);
 
-    static void applyRequestData(Message message, TextMessage jmsMessage) throws JMSException {
-        addMessageMetadata(message, jmsMessage);
-        addMessageProperties(message, jmsMessage);
-        addPayload(message, jmsMessage);
+    static void applyRequestData(TextMessage jmsMessage, Message message) throws JMSException {
+        addMetadata(jmsMessage, message);
+        addProperties(jmsMessage, message);
+        addPayload(jmsMessage, message);
     }
 
-    private static void addMessageMetadata(Message message, TextMessage jmsMessage) throws JMSException {
+    private static void addMetadata(TextMessage jmsMessage, Message message) throws JMSException {
         log.debug("Adding metadata to message from jms message");
         addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_MESSAGE_ID, jmsMessage.getJMSMessageID());
         addStringParam(message, REQUEST_METADATA_CONTEXT, JMS_TYPE, jmsMessage.getJMSType());
@@ -41,7 +41,7 @@ class MessageRequestUtil {
     }
 
     @SuppressWarnings("unchecked")
-    private static void addMessageProperties(Message message, TextMessage jmsMessage) throws JMSException {
+    private static void addProperties(TextMessage jmsMessage, Message message) throws JMSException {
         log.debug("Adding properties to message from jms message");
         Enumeration<String> propertyNames = jmsMessage.getPropertyNames();
 
@@ -57,7 +57,7 @@ class MessageRequestUtil {
         }
     }
 
-    private static void addPayload(Message message, TextMessage jmsMessage) throws JMSException {
+    private static void addPayload(TextMessage jmsMessage, Message message) throws JMSException {
         log.debug("Adding payload to message from jms message");
         addStringParam(message, REQUEST_PAYLOAD_CONTEXT, TEXT, jmsMessage.getText());
     }

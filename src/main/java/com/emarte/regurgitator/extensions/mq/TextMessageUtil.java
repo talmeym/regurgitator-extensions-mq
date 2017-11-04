@@ -13,17 +13,21 @@ import static com.emarte.regurgitator.core.Log.getLog;
 import static com.emarte.regurgitator.core.StringType.stringify;
 import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
 
-class MessageResponseUtil {
-    private static final Log log = getLog(MessageResponseUtil.class);
+class TextMessageUtil {
+    private static final Log log = getLog(TextMessageUtil.class);
 
     static void applyResponseData(Message message, TextMessage jmsMessage, MqMessagingSystem mqMessagingSystem) throws JMSException {
-        addResponseMetadata(message, jmsMessage, mqMessagingSystem);
-        addResponseProperties(message, jmsMessage);
+        addMetadata(message.getContext(RESPONSE_METADATA_CONTEXT), jmsMessage, mqMessagingSystem);
+        addProperties(message.getContext(RESPONSE_PROPERTIES_CONTEXT), jmsMessage);
     }
 
-    private static void addResponseMetadata(Message message, TextMessage jmsMessage, MqMessagingSystem mqMessagingSystem) throws JMSException {
+    static void applyRequestData(Message message, TextMessage jmsMessage, MqMessagingSystem mqMessagingSystem) throws JMSException {
+        addMetadata(message.getContext(REQUEST_METADATA_CONTEXT), jmsMessage, mqMessagingSystem);
+        addProperties(message.getContext(REQUEST_PROPERTIES_CONTEXT), jmsMessage);
+    }
+
+    private static void addMetadata(Parameters context, TextMessage jmsMessage, MqMessagingSystem mqMessagingSystem) throws JMSException {
         log.debug("Adding metadata to jms message from message");
-        Parameters context = message.getContext(RESPONSE_METADATA_CONTEXT);
 
         if(context.contains(JMS_MESSAGE_ID)) {
             Object value = context.getValue(JMS_MESSAGE_ID);
@@ -94,9 +98,8 @@ class MessageResponseUtil {
         return Long.parseLong(stringify(value));
     }
 
-    private static void addResponseProperties(Message message, TextMessage jmsMessage) throws JMSException {
+    private static void addProperties(Parameters context, TextMessage jmsMessage) throws JMSException {
         log.debug("Adding properties to jms message from message");
-        Parameters context = message.getContext(RESPONSE_PROPERTIES_CONTEXT);
 
         for(Object id : context.ids()) {
             Object value = context.getValue(id);

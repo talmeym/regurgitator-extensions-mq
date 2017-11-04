@@ -16,13 +16,15 @@ public class ActiveMqMessagePrinter {
     private static final Log log = Log.getLog(ActiveMqMessagePrinter.class);
     
     public static void main(String[] args) throws JMSException, IOException {
-        log.debug("Loading activemq config");
+        log.info("Loading activemq config");
         Properties properties = new Properties();
         properties.load(new FileInputStream(args[0]));
 
-        Connection connection = new ActiveMqMessagingSystem(properties).getConnection();
+        ActiveMqMessagingSystem mqMessagingSystem = new ActiveMqMessagingSystem(properties);
+
+        Connection connection = mqMessagingSystem.getConnection();
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        MessageConsumer consumer = session.createConsumer(session.createQueue(args[1]));
+        MessageConsumer consumer = session.createConsumer(mqMessagingSystem.createDestination(args[1]));
 
         consumer.setMessageListener(new MessageListener() {
             @Override
@@ -30,7 +32,7 @@ public class ActiveMqMessagePrinter {
                 TextMessage textMessage = (TextMessage) message;
 
                 try {
-                    log.info("\ntext: " + textMessage.getText());
+                    log.info("text: " + textMessage.getText());
                     log.info("jms-message-id: " + textMessage.getJMSMessageID());
                     log.info("type: " + textMessage.getJMSType());
                     log.info("destination: " + stringify(textMessage.getJMSDestination()));
@@ -50,9 +52,9 @@ public class ActiveMqMessagePrinter {
                         log.info("property[" + name + "]: " + stringify(textMessage.getObjectProperty(name)));
                     }
 
-                    log.info("\n======================");
+                    log.info("======================");
                 } catch (JMSException e) {
-                    e.printStackTrace();
+                    log.error("Error printing jms message", e);
                 }
             }
         });

@@ -21,4 +21,5 @@ public interface ExtensionsMqConfigConstants {
     String JMS_REPLY_TO = "jms-reply-to";
     String JMS_TIMESTAMP = "jms-timestamp";
     String TEXT = "text";
+    String DESTINATION = "destination";
 }
