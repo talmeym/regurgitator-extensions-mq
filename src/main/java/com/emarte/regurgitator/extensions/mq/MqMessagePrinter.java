@@ -2,7 +2,7 @@
  * Copyright (C) 2017 Miles Talmey.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
-package com.emarte.regurgitator.test;
+package com.emarte.regurgitator.extensions.mq;
 
 import com.emarte.regurgitator.core.Log;
 
@@ -12,19 +12,15 @@ import java.util.*;
 
 import static com.emarte.regurgitator.core.StringType.stringify;
 
-public class ActiveMqMessagePrinter {
-    private static final Log log = Log.getLog(ActiveMqMessagePrinter.class);
+public class MqMessagePrinter {
+    private static final Log log = Log.getLog(MqMessagePrinter.class);
     
     public static void main(String[] args) throws JMSException, IOException {
-        log.info("Loading activemq config");
-        Properties properties = new Properties();
-        properties.load(new FileInputStream(args[0]));
-
-        ActiveMqMessagingSystem mqMessagingSystem = new ActiveMqMessagingSystem(properties);
+        MqMessagingSystem mqMessagingSystem = MqMessagingLookup.mqMessagingSystem();
 
         Connection connection = mqMessagingSystem.getConnection();
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        MessageConsumer consumer = session.createConsumer(mqMessagingSystem.createDestination(args[1]));
+        MessageConsumer consumer = session.createConsumer(mqMessagingSystem.createDestination(args[0]));
 
         consumer.setMessageListener(new MessageListener() {
             @Override

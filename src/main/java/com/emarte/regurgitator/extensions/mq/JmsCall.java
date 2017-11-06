@@ -42,6 +42,7 @@ public class JmsCall extends Identifiable implements Step {
             Session session = connection.createSession(false, AUTO_ACKNOWLEDGE);
             MessageProducer producer = session.createProducer(mqMessagingSystem.createDestination(destination));
             producer.send(jmsMessage);
+            log.debug("Message sent");
         } catch (JMSException e) {
             throw new RegurgitatorException("Error sending jms message", e);
         }

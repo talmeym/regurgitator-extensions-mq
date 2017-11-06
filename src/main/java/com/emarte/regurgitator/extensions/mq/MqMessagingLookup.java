@@ -6,10 +6,10 @@ package com.emarte.regurgitator.extensions.mq;
 
 import java.util.ServiceLoader;
 
-class MqMessagingLookup {
+public class MqMessagingLookup {
     private static ServiceLoader<MqMessagingSystem> MQ_MESSAGING_SYSTEMS = ServiceLoader.load(MqMessagingSystem.class);
 
-    static MqMessagingSystem mqMessagingSystem() {
+    public static MqMessagingSystem mqMessagingSystem() {
         for(MqMessagingSystem mqMessagingSystem: MQ_MESSAGING_SYSTEMS) {
             return mqMessagingSystem;
         }

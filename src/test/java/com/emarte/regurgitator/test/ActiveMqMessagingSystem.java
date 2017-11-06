@@ -11,9 +11,10 @@ import org.apache.activemq.command.ActiveMQDestination;
 import org.apache.activemq.command.ActiveMQTextMessage;
 
 import javax.jms.*;
-
+import java.io.IOException;
 import java.util.Properties;
 
+import static com.emarte.regurgitator.core.FileUtil.getInputStreamForFile;
 import static org.apache.activemq.command.ActiveMQDestination.QUEUE_TYPE;
 
 public class ActiveMqMessagingSystem implements MqMessagingSystem {
@@ -21,8 +22,13 @@ public class ActiveMqMessagingSystem implements MqMessagingSystem {
     private final Properties properties;
     private Connection connection;
 
-    public ActiveMqMessagingSystem(Properties properties) {
-        this.properties = properties;
+    public ActiveMqMessagingSystem() {
+        try {
+            properties = new Properties();
+            properties.load(getInputStreamForFile("classpath:/activemq.properties"));
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Error loading activemq properties", e);
+        }
     }
 
     @Override
