@@ -4,11 +4,11 @@
  */
 package com.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.*;
 import com.emarte.regurgitator.core.Message;
+import com.emarte.regurgitator.core.*;
 
-import javax.jms.*;
 import javax.jms.Session;
+import javax.jms.*;
 
 import static com.emarte.regurgitator.core.StringType.stringify;
 import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.REQUEST_PAYLOAD_CONTEXT;

@@ -4,11 +4,15 @@
  */
 package com.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.*;
+import com.emarte.regurgitator.core.Log;
+import com.emarte.regurgitator.core.Regurgitator;
+import com.emarte.regurgitator.core.RegurgitatorException;
+import com.emarte.regurgitator.core.Step;
 
-import javax.jms.*;
+import javax.jms.Connection;
+import javax.jms.JMSException;
+import javax.jms.MessageConsumer;
 import javax.jms.Session;
-
 import java.io.IOException;
 
 import static com.emarte.regurgitator.core.ConfigurationFile.loadFile;

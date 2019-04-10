@@ -5,10 +5,11 @@
 package com.emarte.regurgitator.extensions.mq;
 
 import com.emarte.regurgitator.core.*;
-import com.emarte.regurgitator.core.Message;
 
-import javax.jms.*;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
 import javax.jms.Session;
+import javax.jms.TextMessage;
 
 import static com.emarte.regurgitator.core.Log.getLog;
 import static com.emarte.regurgitator.core.StringType.stringify;

@@ -11,9 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.jms.*;
 
-import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.REQUEST_PAYLOAD_CONTEXT;
-import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.REQUEST_PROPERTIES_CONTEXT;
-import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.TEXT;
+import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

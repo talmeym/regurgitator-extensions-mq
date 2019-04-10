@@ -4,7 +4,10 @@
  */
 package com.emarte.regurgitator.extensions.mq;
 
-import javax.jms.*;
+import javax.jms.Connection;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
 
 public interface MqMessagingSystem {
     Connection getConnection() throws JMSException;

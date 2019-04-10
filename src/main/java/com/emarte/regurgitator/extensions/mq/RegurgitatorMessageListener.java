@@ -4,7 +4,10 @@
  */
 package com.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.*;
+import com.emarte.regurgitator.core.Log;
+import com.emarte.regurgitator.core.Message;
+import com.emarte.regurgitator.core.Regurgitator;
+import com.emarte.regurgitator.core.ResponseCallBack;
 
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;

@@ -7,8 +7,9 @@ package com.emarte.regurgitator.extensions.mq;
 import com.emarte.regurgitator.core.Log;
 
 import javax.jms.*;
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.Date;
+import java.util.Enumeration;
 
 import static com.emarte.regurgitator.core.StringType.stringify;
 

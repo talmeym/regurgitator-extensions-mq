@@ -9,6 +9,7 @@ import com.emarte.regurgitator.extensions.mq.CreateJmsResponse;
 import com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.BitSet;
 
 import static java.lang.Boolean.TRUE;
@@ -31,7 +32,7 @@ public class CreateJmsResponseTest {
 
     @Test
     public void testThis() throws RegurgitatorException {
-        CreateJmsResponse toTest = new CreateJmsResponse(new CreateResponse("id", new ValueSource(null, VALUE), null), MESSAGE_ID, MESSAGE_TYPE, DESTINATION, CORRELATION_ID, DELIVERY_MODE, EXPIRATION, PRIORITY, REDELIVERED, REPLY_TO, TIMESTAMP);
+        CreateJmsResponse toTest = new CreateJmsResponse(new CreateResponse("id", new ValueSource(null, VALUE), new ArrayList<ValueProcessor>()), MESSAGE_ID, MESSAGE_TYPE, DESTINATION, CORRELATION_ID, DELIVERY_MODE, EXPIRATION, PRIORITY, REDELIVERED, REPLY_TO, TIMESTAMP);
         final BitSet marker = new BitSet(1);
 
         toTest.execute(new Message(new ResponseCallBack() {

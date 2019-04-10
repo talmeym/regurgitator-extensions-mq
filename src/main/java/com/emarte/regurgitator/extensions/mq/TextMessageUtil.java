@@ -4,7 +4,9 @@
  */
 package com.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.*;
+import com.emarte.regurgitator.core.Log;
+import com.emarte.regurgitator.core.Message;
+import com.emarte.regurgitator.core.Parameters;
 
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
