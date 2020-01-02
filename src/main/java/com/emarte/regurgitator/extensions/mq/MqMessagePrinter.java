@@ -7,7 +7,6 @@ package com.emarte.regurgitator.extensions.mq;
 import com.emarte.regurgitator.core.Log;
 
 import javax.jms.*;
-import java.io.IOException;
 import java.util.Date;
 import java.util.Enumeration;
 
@@ -16,7 +15,7 @@ import static com.emarte.regurgitator.core.StringType.stringify;
 public class MqMessagePrinter {
     private static final Log log = Log.getLog(MqMessagePrinter.class);
     
-    public static void main(String[] args) throws JMSException, IOException {
+    public static void main(String[] args) throws JMSException {
         MqMessagingSystem mqMessagingSystem = MqMessagingLookup.mqMessagingSystem();
 
         Connection connection = mqMessagingSystem.getConnection();

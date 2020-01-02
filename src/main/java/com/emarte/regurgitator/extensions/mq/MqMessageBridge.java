@@ -13,7 +13,6 @@ import javax.jms.Connection;
 import javax.jms.JMSException;
 import javax.jms.MessageConsumer;
 import javax.jms.Session;
-import java.io.IOException;
 
 import static com.emarte.regurgitator.core.ConfigurationFile.loadFile;
 import static com.emarte.regurgitator.extensions.mq.MqMessagingLookup.mqMessagingSystem;
@@ -36,7 +35,7 @@ public class MqMessageBridge {
         log.info("Awaiting jms messages");
     }
 
-    public static void main(String[] args) throws RegurgitatorException, JMSException, IOException {
+    public static void main(String[] args) throws RegurgitatorException, JMSException {
         String inputQueue = args[0];
         String outputQueue = args[1];
         String regurgitatorId = args[2];
