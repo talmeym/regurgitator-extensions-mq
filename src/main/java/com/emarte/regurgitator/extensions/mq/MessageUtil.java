@@ -73,6 +73,7 @@ class MessageUtil {
             message.getContext(context).setValue(name, NUMBER, (long) value);
         }
     }
+
     private static void addLongParam(Message message, String context, String name, Long value) {
         if(value != null) {
             message.getContext(context).setValue(name, NUMBER, value);
