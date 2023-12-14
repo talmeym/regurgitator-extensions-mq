@@ -22,36 +22,33 @@ public class MqMessagePrinter {
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         MessageConsumer consumer = session.createConsumer(mqMessagingSystem.createDestination(args[0]));
 
-        consumer.setMessageListener(new MessageListener() {
-            @Override
-            public void onMessage(Message message) {
-                TextMessage textMessage = (TextMessage) message;
+        consumer.setMessageListener(message -> {
+            TextMessage textMessage = (TextMessage) message;
 
-                try {
-                    log.info("text: " + textMessage.getText());
-                    log.info("jms-message-id: " + textMessage.getJMSMessageID());
-                    log.info("type: " + textMessage.getJMSType());
-                    log.info("destination: " + stringify(textMessage.getJMSDestination()));
-                    log.info("correlation-id: " + textMessage.getJMSCorrelationID());
-                    log.info("delivery-mode: " + textMessage.getJMSDeliveryMode());
-                    long expiration = textMessage.getJMSExpiration();
-                    log.info("expiration: " + (expiration != 0 ? new Date(expiration).toString() : expiration) + " (now:" + new Date() + ")");
-                    log.info("priority: " + textMessage.getJMSPriority());
-                    log.info("redelivered: " + textMessage.getJMSRedelivered());
-                    log.info("replyTo: " + stringify(textMessage.getJMSReplyTo()));
-                    log.info("timestamp: " + textMessage.getJMSTimestamp());
+            try {
+                log.info("text: " + textMessage.getText());
+                log.info("jms-message-id: " + textMessage.getJMSMessageID());
+                log.info("type: " + textMessage.getJMSType());
+                log.info("destination: " + stringify(textMessage.getJMSDestination()));
+                log.info("correlation-id: " + textMessage.getJMSCorrelationID());
+                log.info("delivery-mode: " + textMessage.getJMSDeliveryMode());
+                long expiration = textMessage.getJMSExpiration();
+                log.info("expiration: " + (expiration != 0 ? new Date(expiration).toString() : expiration) + " (now:" + new Date() + ")");
+                log.info("priority: " + textMessage.getJMSPriority());
+                log.info("redelivered: " + textMessage.getJMSRedelivered());
+                log.info("replyTo: " + stringify(textMessage.getJMSReplyTo()));
+                log.info("timestamp: " + textMessage.getJMSTimestamp());
 
-                    Enumeration enumeration = textMessage.getPropertyNames();
+                Enumeration enumeration = textMessage.getPropertyNames();
 
-                    while(enumeration.hasMoreElements()) {
-                        String name = (String) enumeration.nextElement();
-                        log.info("property[" + name + "]: " + stringify(textMessage.getObjectProperty(name)));
-                    }
-
-                    log.info("======================");
-                } catch (JMSException e) {
-                    log.error("Error printing jms message", e);
+                while(enumeration.hasMoreElements()) {
+                    String name = (String) enumeration.nextElement();
+                    log.info("property[" + name + "]: " + stringify(textMessage.getObjectProperty(name)));
                 }
+
+                log.info("======================");
+            } catch (JMSException e) {
+                log.error("Error printing jms message", e);
             }
         });
 

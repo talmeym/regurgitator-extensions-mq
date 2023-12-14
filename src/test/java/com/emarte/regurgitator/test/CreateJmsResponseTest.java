@@ -32,26 +32,23 @@ public class CreateJmsResponseTest {
 
     @Test
     public void testThis() throws RegurgitatorException {
-        CreateJmsResponse toTest = new CreateJmsResponse(new CreateResponse("id", new ValueSource(null, VALUE), new ArrayList<ValueProcessor>()), MESSAGE_ID, MESSAGE_TYPE, DESTINATION, CORRELATION_ID, DELIVERY_MODE, EXPIRATION, PRIORITY, REDELIVERED, REPLY_TO, TIMESTAMP);
+        CreateJmsResponse toTest = new CreateJmsResponse(new CreateResponse("id", new ValueSource(null, VALUE), new ArrayList<>()), MESSAGE_ID, MESSAGE_TYPE, DESTINATION, CORRELATION_ID, DELIVERY_MODE, EXPIRATION, PRIORITY, REDELIVERED, REPLY_TO, TIMESTAMP);
         final BitSet marker = new BitSet(1);
 
-        toTest.execute(new Message(new ResponseCallBack() {
-            @Override
-            public void respond(Message message, Object value) {
-                marker.set(0);
-                assertEquals(VALUE, value);
-                Parameters responseMetaDataContext = message.getContext(ExtensionsMqConfigConstants.RESPONSE_METADATA_CONTEXT);
-                assertEquals(MESSAGE_ID, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_MESSAGE_ID));
-                assertEquals(MESSAGE_TYPE, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_TYPE));
-                assertEquals(DESTINATION, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_DESTINATION));
-                assertEquals(CORRELATION_ID, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_CORRELATION_ID));
-                assertEquals(DELIVERY_MODE, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_DELIVERY_MODE));
-                assertEquals(EXPIRATION, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_EXPIRATION));
-                assertEquals(PRIORITY, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_PRIORITY));
-                assertEquals(String.valueOf(REDELIVERED), responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_REDELIVERED));
-                assertEquals(REPLY_TO, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_REPLY_TO));
-                assertEquals(TIMESTAMP, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_TIMESTAMP));
-            }
+        toTest.execute(new Message((message, value) -> {
+            marker.set(0);
+            assertEquals(VALUE, value);
+            Parameters responseMetaDataContext = message.getContext(ExtensionsMqConfigConstants.RESPONSE_METADATA_CONTEXT);
+            assertEquals(MESSAGE_ID, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_MESSAGE_ID));
+            assertEquals(MESSAGE_TYPE, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_TYPE));
+            assertEquals(DESTINATION, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_DESTINATION));
+            assertEquals(CORRELATION_ID, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_CORRELATION_ID));
+            assertEquals(DELIVERY_MODE, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_DELIVERY_MODE));
+            assertEquals(EXPIRATION, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_EXPIRATION));
+            assertEquals(PRIORITY, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_PRIORITY));
+            assertEquals(String.valueOf(REDELIVERED), responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_REDELIVERED));
+            assertEquals(REPLY_TO, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_REPLY_TO));
+            assertEquals(TIMESTAMP, responseMetaDataContext.getValue(ExtensionsMqConfigConstants.JMS_TIMESTAMP));
         }));
 
         assertTrue(marker.get(0));
