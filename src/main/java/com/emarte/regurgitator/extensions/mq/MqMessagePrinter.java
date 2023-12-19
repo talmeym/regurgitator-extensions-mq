@@ -39,7 +39,7 @@ public class MqMessagePrinter {
                 log.info("replyTo: " + stringify(textMessage.getJMSReplyTo()));
                 log.info("timestamp: " + textMessage.getJMSTimestamp());
 
-                Enumeration enumeration = textMessage.getPropertyNames();
+                Enumeration<?> enumeration = textMessage.getPropertyNames();
 
                 while(enumeration.hasMoreElements()) {
                     String name = (String) enumeration.nextElement();
