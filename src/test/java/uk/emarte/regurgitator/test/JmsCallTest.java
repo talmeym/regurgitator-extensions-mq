@@ -1,9 +1,9 @@
-package com.emarte.regurgitator.test;
+package uk.emarte.regurgitator.test;
 
-import com.emarte.regurgitator.core.Message;
-import com.emarte.regurgitator.core.RegurgitatorException;
-import com.emarte.regurgitator.extensions.mq.JmsCall;
-import com.emarte.regurgitator.extensions.mq.MqMessagingSystem;
+import uk.emarte.regurgitator.core.Message;
+import uk.emarte.regurgitator.core.RegurgitatorException;
+import uk.emarte.regurgitator.extensions.mq.JmsCall;
+import uk.emarte.regurgitator.extensions.mq.MqMessagingSystem;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -11,9 +11,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.jms.*;
 
-import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class JmsCallTest {
