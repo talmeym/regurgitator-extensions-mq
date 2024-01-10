@@ -2,12 +2,12 @@
  * Copyright (C) 2017 Miles Talmey.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
-package com.emarte.regurgitator.test;
+package uk.emarte.regurgitator.test;
 
-import com.emarte.regurgitator.core.*;
-import com.emarte.regurgitator.extensions.mq.CreateJmsResponse;
-import com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants;
 import org.junit.Test;
+import uk.emarte.regurgitator.core.*;
+import uk.emarte.regurgitator.extensions.mq.CreateJmsResponse;
+import uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants;
 
 import java.util.ArrayList;
 import java.util.BitSet;
