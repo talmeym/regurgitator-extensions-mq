@@ -34,7 +34,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.emarte.regurgitator</groupId>
+            <groupId>uk.emarte.regurgitator</groupId>
             <artifactId>regurgitator-core-config</artifactId>
             <version>0.0.1</version>
         </dependency>
