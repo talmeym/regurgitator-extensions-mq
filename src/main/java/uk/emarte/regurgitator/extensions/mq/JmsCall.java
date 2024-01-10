@@ -4,17 +4,17 @@
  */
 package uk.emarte.regurgitator.extensions.mq;
 
-import uk.emarte.regurgitator.core.*;
 import uk.emarte.regurgitator.core.Message;
+import uk.emarte.regurgitator.core.*;
 
 import javax.jms.Session;
 import javax.jms.*;
 
+import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 import static uk.emarte.regurgitator.core.StringType.stringify;
 import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.REQUEST_PAYLOAD_CONTEXT;
 import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.TEXT;
 import static uk.emarte.regurgitator.extensions.mq.TextMessageUtil.applyRequestData;
-import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 
 public class JmsCall extends Identifiable implements Step {
     private final Log log = Log.getLog(this);

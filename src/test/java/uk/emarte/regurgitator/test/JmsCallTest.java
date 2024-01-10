@@ -1,13 +1,13 @@
 package uk.emarte.regurgitator.test;
 
-import uk.emarte.regurgitator.core.Message;
-import uk.emarte.regurgitator.core.RegurgitatorException;
-import uk.emarte.regurgitator.extensions.mq.JmsCall;
-import uk.emarte.regurgitator.extensions.mq.MqMessagingSystem;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import uk.emarte.regurgitator.core.Message;
+import uk.emarte.regurgitator.core.RegurgitatorException;
+import uk.emarte.regurgitator.extensions.mq.JmsCall;
+import uk.emarte.regurgitator.extensions.mq.MqMessagingSystem;
 
 import javax.jms.*;
 

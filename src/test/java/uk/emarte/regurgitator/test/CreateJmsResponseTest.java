@@ -4,10 +4,10 @@
  */
 package uk.emarte.regurgitator.test;
 
+import org.junit.Test;
 import uk.emarte.regurgitator.core.*;
 import uk.emarte.regurgitator.extensions.mq.CreateJmsResponse;
 import uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants;
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.BitSet;
