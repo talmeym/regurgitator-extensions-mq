@@ -2,15 +2,15 @@
  * Copyright (C) 2017 Miles Talmey.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
-package com.emarte.regurgitator.extensions.mq;
+package uk.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.Log;
+import uk.emarte.regurgitator.core.Log;
 
 import javax.jms.*;
 import java.util.Date;
 import java.util.Enumeration;
 
-import static com.emarte.regurgitator.core.StringType.stringify;
+import static uk.emarte.regurgitator.core.StringType.stringify;
 
 public class MqMessagePrinter {
     private static final Log log = Log.getLog(MqMessagePrinter.class);

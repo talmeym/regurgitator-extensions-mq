@@ -19,7 +19,7 @@ the ``mq message bridge`` is made up of the following classes:
 regurgitator abstracts the mq system to be used to an interface for you to implement with an mq of your choice.
 
 ```java
-package com.emarte.regurgitator.extensions.mq;
+package uk.emarte.regurgitator.extensions.mq;
 
 import javax.jms.*;
 

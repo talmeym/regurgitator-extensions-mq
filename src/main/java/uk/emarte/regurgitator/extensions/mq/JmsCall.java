@@ -2,19 +2,19 @@
  * Copyright (C) 2017 Miles Talmey.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
-package com.emarte.regurgitator.extensions.mq;
+package uk.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.Message;
-import com.emarte.regurgitator.core.*;
+import uk.emarte.regurgitator.core.Message;
+import uk.emarte.regurgitator.core.*;
 
 import javax.jms.Session;
 import javax.jms.*;
 
-import static com.emarte.regurgitator.core.StringType.stringify;
-import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.REQUEST_PAYLOAD_CONTEXT;
-import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.TEXT;
-import static com.emarte.regurgitator.extensions.mq.TextMessageUtil.applyRequestData;
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
+import static uk.emarte.regurgitator.core.StringType.stringify;
+import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.REQUEST_PAYLOAD_CONTEXT;
+import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.TEXT;
+import static uk.emarte.regurgitator.extensions.mq.TextMessageUtil.applyRequestData;
 
 public class JmsCall extends Identifiable implements Step {
     private final Log log = Log.getLog(this);
