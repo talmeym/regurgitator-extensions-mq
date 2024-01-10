@@ -34,14 +34,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-all</artifactId>
-            <version>5.1.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>uk.emarte.regurgitator</groupId>
+            <groupId>com.emarte.regurgitator</groupId>
             <artifactId>regurgitator-core-config</artifactId>
             <version>0.0.1</version>
         </dependency>
