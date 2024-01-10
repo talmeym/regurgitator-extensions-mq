@@ -2,13 +2,13 @@
  * Copyright (C) 2017 Miles Talmey.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
-package com.emarte.regurgitator.test;
+package uk.emarte.regurgitator.test;
 
-import com.emarte.regurgitator.core.Log;
-import com.emarte.regurgitator.extensions.mq.MqMessagingSystem;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQDestination;
 import org.apache.activemq.command.ActiveMQTextMessage;
+import uk.emarte.regurgitator.core.Log;
+import uk.emarte.regurgitator.extensions.mq.MqMessagingSystem;
 
 import javax.jms.Connection;
 import javax.jms.Destination;
@@ -17,8 +17,8 @@ import javax.jms.TextMessage;
 import java.io.IOException;
 import java.util.Properties;
 
-import static com.emarte.regurgitator.core.FileUtil.getInputStreamForFile;
 import static org.apache.activemq.command.ActiveMQDestination.QUEUE_TYPE;
+import static uk.emarte.regurgitator.core.FileUtil.getInputStreamForFile;
 
 public class ActiveMqMessagingSystem implements MqMessagingSystem {
     private static final Log log = Log.getLog(ActiveMqMessagingSystem.class);

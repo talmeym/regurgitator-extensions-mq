@@ -2,18 +2,18 @@
  * Copyright (C) 2017 Miles Talmey.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
-package com.emarte.regurgitator.extensions.mq;
+package uk.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.Log;
-import com.emarte.regurgitator.core.Message;
-import com.emarte.regurgitator.core.Regurgitator;
-import com.emarte.regurgitator.core.ResponseCallBack;
+import uk.emarte.regurgitator.core.Log;
+import uk.emarte.regurgitator.core.Message;
+import uk.emarte.regurgitator.core.Regurgitator;
+import uk.emarte.regurgitator.core.ResponseCallBack;
 
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-import static com.emarte.regurgitator.core.Log.getLog;
-import static com.emarte.regurgitator.extensions.mq.MessageUtil.applyRequestData;
+import static uk.emarte.regurgitator.core.Log.getLog;
+import static uk.emarte.regurgitator.extensions.mq.MessageUtil.applyRequestData;
 
 public class RegurgitatorMessageListener implements MessageListener {
     private static final Log log = getLog(RegurgitatorMessageListener.class);
