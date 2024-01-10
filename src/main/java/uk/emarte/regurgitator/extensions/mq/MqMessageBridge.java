@@ -2,21 +2,21 @@
  * Copyright (C) 2017 Miles Talmey.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
-package com.emarte.regurgitator.extensions.mq;
+package uk.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.Log;
-import com.emarte.regurgitator.core.Regurgitator;
-import com.emarte.regurgitator.core.RegurgitatorException;
-import com.emarte.regurgitator.core.Step;
+import uk.emarte.regurgitator.core.Log;
+import uk.emarte.regurgitator.core.Regurgitator;
+import uk.emarte.regurgitator.core.RegurgitatorException;
+import uk.emarte.regurgitator.core.Step;
 
 import javax.jms.Connection;
 import javax.jms.JMSException;
 import javax.jms.MessageConsumer;
 import javax.jms.Session;
 
-import static com.emarte.regurgitator.core.ConfigurationFile.loadFile;
-import static com.emarte.regurgitator.extensions.mq.MqMessagingLookup.mqMessagingSystem;
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
+import static uk.emarte.regurgitator.core.ConfigurationFile.loadFile;
+import static uk.emarte.regurgitator.extensions.mq.MqMessagingLookup.mqMessagingSystem;
 
 public class MqMessageBridge {
     private static final Log log = Log.getLog(MqMessageBridge.class);

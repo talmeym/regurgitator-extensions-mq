@@ -2,20 +2,20 @@
  * Copyright (C) 2017 Miles Talmey.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
-package com.emarte.regurgitator.extensions.mq;
+package uk.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.Log;
-import com.emarte.regurgitator.core.Message;
+import uk.emarte.regurgitator.core.Log;
+import uk.emarte.regurgitator.core.Message;
 
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
 import java.util.Enumeration;
 
-import static com.emarte.regurgitator.core.CoreTypes.NUMBER;
-import static com.emarte.regurgitator.core.CoreTypes.STRING;
-import static com.emarte.regurgitator.core.Log.getLog;
-import static com.emarte.regurgitator.core.StringType.stringify;
-import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
+import static uk.emarte.regurgitator.core.CoreTypes.NUMBER;
+import static uk.emarte.regurgitator.core.CoreTypes.STRING;
+import static uk.emarte.regurgitator.core.Log.getLog;
+import static uk.emarte.regurgitator.core.StringType.stringify;
+import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
 
 class MessageUtil {
     private static final Log log = getLog(MessageUtil.class);

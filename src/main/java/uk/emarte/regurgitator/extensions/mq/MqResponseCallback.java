@@ -2,20 +2,20 @@
  * Copyright (C) 2017 Miles Talmey.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
-package com.emarte.regurgitator.extensions.mq;
+package uk.emarte.regurgitator.extensions.mq;
 
-import com.emarte.regurgitator.core.*;
+import uk.emarte.regurgitator.core.*;
 
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
-import static com.emarte.regurgitator.core.Log.getLog;
-import static com.emarte.regurgitator.core.StringType.stringify;
-import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.JMS_DESTINATION;
-import static com.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.RESPONSE_METADATA_CONTEXT;
-import static com.emarte.regurgitator.extensions.mq.TextMessageUtil.applyResponseData;
+import static uk.emarte.regurgitator.core.Log.getLog;
+import static uk.emarte.regurgitator.core.StringType.stringify;
+import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.JMS_DESTINATION;
+import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.RESPONSE_METADATA_CONTEXT;
+import static uk.emarte.regurgitator.extensions.mq.TextMessageUtil.applyResponseData;
 
 class MqResponseCallback implements ResponseCallBack {
     private static final Log log = getLog(MqResponseCallback.class);
