@@ -44,7 +44,7 @@ the mq message bridge uses a ``MqMessagingSystem`` to create a consumer on an in
 
 ### example
 
-an example of using the mq message bridge with ``ActiveMQ`` can be found [here](https://github.com/talmeym/regurgitator-extensions-mq/tree/master/src/test/java/com/emarte/regurgitator/test). this example can be run with the following [configuration file](https://github.com/talmeym/regurgitator-extensions-mq/blob/master/src/test/resources/rock-paper-scissors-over-mq.xml) to play a famous game over mq.
+an example of using the mq message bridge with ``ActiveMQ`` can be found [here](https://talmeym.github.io/regurgitator-extensions-mq/tree/master/src/test/java/com/emarte/regurgitator/test). this example can be run with the following [configuration file](https://talmeym.github.io/regurgitator-extensions-mq/blob/master/src/test/resources/rock-paper-scissors-over-mq.xml) to play a famous game over mq.
 
 ### request mappings
 
@@ -83,6 +83,6 @@ The same jms attribute set can also be explicitly set as response parameters:
 ## steps
 
 regurgitator-extensions-mq provides the following steps:
-- ``create-jms-response`` ([xml](https://github.com/talmeym/regurgitator-extensions-mq-xml#create-jms-response), [json](https://github.com/talmeym/regurgitator-extensions-mq-json#create-jms-response), [yml](https://github.com/talmeym/regurgitator-extensions-mq-yml#create-jms-response)) create a response, pre-populating parameters for jms destination, correlation id and other mq metadata.
+- ``create-jms-response`` ([xml](https://talmeym.github.io/regurgitator-extensions-mq-xml#create-jms-response), [json](https://talmeym.github.io/regurgitator-extensions-mq-json#create-jms-response), [yml](https://talmeym.github.io/regurgitator-extensions-mq-yml#create-jms-response)) create a response, pre-populating parameters for jms destination, correlation id and other mq metadata.
 
 
