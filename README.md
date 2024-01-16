@@ -83,7 +83,7 @@ The same jms attribute set can also be explicitly set as response parameters:
 ## steps
 
 regurgitator-extensions-mq provides the following steps:
-- ``jms-call`` ([xml](https://talmeym.github.io/regurgitator-extensions-mq-xml#jms-call), [json](https://talmeym.github.io/regurgitator-extensions-mq-json#jms-call), [yml](https://talmeym.github.io/regurgitator-extensions-mq-yml#jms-call)) make an outward jms 'call', using parameter values for message payload, attributes, object properties etc.
+- ``jms-call`` ([xml](https://talmeym.github.io/regurgitator-extensions-mq-xml#jms-call), [json](https://talmeym.github.io/regurgitator-extensions-mq-json#jms-call), [yml](https://talmeym.github.io/regurgitator-extensions-mq-yml#jms-call)) make an outward jms 'call', placing a text message onto a jms destination, using parameter values for message payload, attributes, object properties etc.
 - ``create-jms-response`` ([xml](https://talmeym.github.io/regurgitator-extensions-mq-xml#create-jms-response), [json](https://talmeym.github.io/regurgitator-extensions-mq-json#create-jms-response), [yml](https://talmeym.github.io/regurgitator-extensions-mq-yml#create-jms-response)) create a response message, allowing pre-populatulation of jms message destination, correlation id and other mq attributes.
 
 
