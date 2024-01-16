@@ -48,7 +48,7 @@ an example of using the mq message bridge with ``ActiveMQ`` can be found [here](
 
 ### request mappings
 
-Regurgitator maps the following incoming jms attributes to request message parameters:
+Regurgitator maps the following incoming jms text messagew attributes to request message parameters:
 
 |attribute|context|parameter|type|
 |---|---|---|---|
