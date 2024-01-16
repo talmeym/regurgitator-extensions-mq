@@ -6,7 +6,7 @@ start your reading here: [regurgitator-all](https://talmeym.github.io/regurgitat
 
 ## regurgitator over mq
 
-regurgitator allows the mocking of mq services by providing an ``mq message bridge`` to allow the capture of an mq request from one queue or topic, the processing of that request through regurgitator and the subsequent placing of any response onto another mq destination.
+regurgitator allows the mocking of jms services by providing an ``mq message bridge`` to allow the capture of a jms 'request' from one queue or topic, the processing of that request through regurgitator and the subsequent placing of a response message onto another jms destination.
 
 ### mq message bridge
 
@@ -16,7 +16,7 @@ the ``mq message bridge`` is made up of the following classes:
 
 #### MqMessagingSystem
 
-regurgitator abstracts the mq system to be used to an interface for you to implement with an mq of your choice.
+regurgitator abstracts the mq system to be used to an interface for you to implement with a jms system of your choice. it currently only supports jms text message type.
 
 ```java
 package uk.emarte.regurgitator.extensions.mq;
@@ -32,11 +32,11 @@ public interface MqMessagingSystem {
 
 #### MqResponseCallback(MqMessagingSystem mqSys, String outputDest)
 
-the mq response callback takes a response from regurgitator and converts it into an outgoing mq message.
+the mq response callback takes a response from regurgitator and converts it into an outgoing jms message.
 
 #### RegurgitatorMessageListener(Regurgitator regurg, ResponseCallBack callback)
 
-the regurgitator message listener accepts incoming mq messages and passes them on to regurgitator as ``message`` objects.
+the regurgitator message listener accepts incoming jms text messages and passes them on to regurgitator as ``message`` objects.
 
 #### MqMessageBridge(MqMessagingSystem mqSys, String inputDest, String outputDest, Regurgitator regurg)
 
