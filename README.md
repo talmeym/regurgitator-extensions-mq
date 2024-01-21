@@ -6,17 +6,17 @@ start your reading here: [regurgitator-all](https://talmeym.github.io/regurgitat
 
 ## regurgitator over mq
 
-regurgitator allows the mocking of jms services by providing an ``mq message bridge`` to allow the capture of a jms 'request' from one queue or topic, the processing of that request through regurgitator and the subsequent placing of a response message onto another jms destination.
+regurgitator allows the mocking of jms services by providing an ``mq message bridge`` to allow the capture of a jms 'request' message from one queue or topic, the processing of that request through regurgitator and the subsequent placing of a response message onto another jms destination.
 
 ### mq message bridge
 
 ***mq req*** => ***RegurgitatorMessageListener*** => ***message*** => ***regurgitator*** => ***MqResponseCallback*** => ***mq res***
 
-the ``mq message bridge`` is made up of the following classes:
+the ``mq message bridge`` is made up of the following parts:
 
 #### MqMessagingSystem
 
-regurgitator abstracts the mq system to be used to an interface for you to implement with a jms system of your choice. **regurgitator currently only supports jms text message type**
+regurgitator abstracts the mq system to be used to an interface, for you to implement with a jms system of your choice. **regurgitator currently only supports jms text message type**
 
 ```java
 package uk.emarte.regurgitator.extensions.mq;
@@ -83,7 +83,7 @@ The same jms attribute set can also be explicitly set as response parameters:
 ## steps
 
 regurgitator-extensions-mq provides the following steps:
-- ``jms-call`` ([xml](https://talmeym.github.io/regurgitator-extensions-mq-xml#jms-call), [json](https://talmeym.github.io/regurgitator-extensions-mq-json#jms-call), [yml](https://talmeym.github.io/regurgitator-extensions-mq-yml#jms-call)) make an outward jms 'call', placing a text message onto a jms destination, using parameter values for message payload, attributes, object properties etc.
-- ``create-jms-response`` ([xml](https://talmeym.github.io/regurgitator-extensions-mq-xml#create-jms-response), [json](https://talmeym.github.io/regurgitator-extensions-mq-json#create-jms-response), [yml](https://talmeym.github.io/regurgitator-extensions-mq-yml#create-jms-response)) create a response message, allowing pre-populatulation of jms message destination, correlation id and other mq attributes.
+- ``jms-call`` ([xml](https://talmeym.github.io/regurgitator-extensions-mq-xml#jms-call), [json](https://talmeym.github.io/regurgitator-extensions-mq-json#jms-call), [yml](https://talmeym.github.io/regurgitator-extensions-mq-yml#jms-call)) make an outward jms 'call', placing a text message onto a jms destination, using existing parameter values for message payload, attributes, object properties etc.
+- ``create-jms-response`` ([xml](https://talmeym.github.io/regurgitator-extensions-mq-xml#create-jms-response), [json](https://talmeym.github.io/regurgitator-extensions-mq-json#create-jms-response), [yml](https://talmeym.github.io/regurgitator-extensions-mq-yml#create-jms-response)) create a response message, but also allows pre-population of message attributes such as jms destination, correlation id and others.
 
 
