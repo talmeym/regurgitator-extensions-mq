@@ -16,7 +16,7 @@ the ``mq message bridge`` is made up of the following parts:
 
 #### MqMessagingSystem
 
-regurgitator abstracts the mq system to be used to an interface, for you to implement with a jms system of your choice. **regurgitator currently only supports jms text message type**
+regurgitator abstracts the mq system to be used to an interface, for you to implement with a jms system of your choice. **regurgitator currently only supports the text jms message type**
 
 ```java
 package uk.emarte.regurgitator.extensions.mq;
