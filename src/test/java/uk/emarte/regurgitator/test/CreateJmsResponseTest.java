@@ -31,7 +31,7 @@ public class CreateJmsResponseTest {
     private static final Long TIMESTAMP = System.currentTimeMillis();
 
     @Test
-    public void testThis() throws RegurgitatorException {
+    public void testStep() throws RegurgitatorException {
         CreateJmsResponse toTest = new CreateJmsResponse(new CreateResponse("id", new ValueSource(null, VALUE), new ArrayList<>()), MESSAGE_ID, MESSAGE_TYPE, DESTINATION, CORRELATION_ID, DELIVERY_MODE, EXPIRATION, PRIORITY, REDELIVERED, REPLY_TO, TIMESTAMP);
         final BitSet marker = new BitSet(1);
 

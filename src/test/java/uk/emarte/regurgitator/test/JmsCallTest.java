@@ -36,7 +36,7 @@ public class JmsCallTest {
     private MqMessagingSystem mqMessagingSystem;
 
     @Test
-    public void testThis() throws RegurgitatorException, JMSException {
+    public void testStep() throws RegurgitatorException, JMSException {
         String destinationStr = "queue://somewhere";
         String propertyKey = "myProperty";
         String propertyValue = "propertyValue";
