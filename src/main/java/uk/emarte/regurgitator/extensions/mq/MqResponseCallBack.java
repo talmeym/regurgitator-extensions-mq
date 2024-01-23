@@ -11,6 +11,7 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
+import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 import static uk.emarte.regurgitator.core.Log.getLog;
 import static uk.emarte.regurgitator.core.StringType.stringify;
 import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.JMS_DESTINATION;
@@ -38,21 +39,26 @@ class MqResponseCallBack implements ResponseCallBack {
                 log.debug("Overriding default jms destination '{}' with parameter value '{}'", defaultOutputDestination, destination);
             }
 
-            Session session = mqMessagingSystem.getConnection().createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
-            MessageProducer producer = session.createProducer(mqMessagingSystem.createDestination(destination));
+            log.debug("Creating text message");
             TextMessage jmsMessage = mqMessagingSystem.createTextMessage();
 
             log.debug("Applying message data to jms message");
             applyResponseData(message, jmsMessage, mqMessagingSystem);
-
-            log.debug("Adding response payload to jms message");
             jmsMessage.setText(stringify(value));
 
             log.debug("Sending response message");
+            Session session = mqMessagingSystem.getConnection().createSession(false, AUTO_ACKNOWLEDGE);
+            MessageProducer producer = session.createProducer(mqMessagingSystem.createDestination(destination));
             producer.send(jmsMessage);
             session.close();
+            log.debug("Message sent");
         } catch (JMSException e) {
             e.printStackTrace(); // TODO error handling ??
         }
     }
 }
+
+
+
+
+
