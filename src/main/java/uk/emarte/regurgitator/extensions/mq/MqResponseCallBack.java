@@ -17,12 +17,12 @@ import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.J
 import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.RESPONSE_METADATA_CONTEXT;
 import static uk.emarte.regurgitator.extensions.mq.TextMessageUtil.applyResponseData;
 
-class MqResponseCallback implements ResponseCallBack {
-    private static final Log log = getLog(MqResponseCallback.class);
+class MqResponseCallBack implements ResponseCallBack {
+    private static final Log log = getLog(MqResponseCallBack.class);
     private final MqMessagingSystem mqMessagingSystem;
     private final String defaultOutputDestination;
 
-    MqResponseCallback(MqMessagingSystem mqMessagingSystem, String defaultOutputDestination) {
+    MqResponseCallBack(MqMessagingSystem mqMessagingSystem, String defaultOutputDestination) {
         this.mqMessagingSystem = mqMessagingSystem;
         this.defaultOutputDestination = defaultOutputDestination;
     }

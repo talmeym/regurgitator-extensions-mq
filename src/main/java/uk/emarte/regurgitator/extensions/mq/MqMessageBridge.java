@@ -30,12 +30,14 @@ public class MqMessageBridge {
         MessageConsumer consumer = session.createConsumer(mqMessagingSystem.createDestination(inputDestination));
 
         log.debug("Setting up message listener");
-        consumer.setMessageListener(new RegurgitatorMessageListener(regurgitator, new MqResponseCallback(mqMessagingSystem, outputDestination)));
+        consumer.setMessageListener(new RegurgitatorMessageListener(regurgitator, new MqResponseCallBack(mqMessagingSystem, outputDestination)));
 
         log.info("Awaiting jms messages");
     }
 
     public static void main(String[] args) throws RegurgitatorException, JMSException {
+        // TODO usage display / input param checking ??
+
         String inputQueue = args[0];
         String outputQueue = args[1];
         String regurgitatorId = args[2];

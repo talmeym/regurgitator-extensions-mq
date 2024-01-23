@@ -12,20 +12,21 @@ import javax.jms.JMSException;
 import javax.jms.TextMessage;
 
 import static uk.emarte.regurgitator.core.Log.getLog;
+import static uk.emarte.regurgitator.core.NumberType.longify;
 import static uk.emarte.regurgitator.core.StringType.stringify;
 import static uk.emarte.regurgitator.extensions.mq.ExtensionsMqConfigConstants.*;
 
 class TextMessageUtil {
     private static final Log log = getLog(TextMessageUtil.class);
 
-    static void applyResponseData(Message message, TextMessage jmsMessage, MqMessagingSystem mqMessagingSystem) throws JMSException {
-        addMetadata(message.getContext(RESPONSE_METADATA_CONTEXT), jmsMessage, mqMessagingSystem);
-        addProperties(message.getContext(RESPONSE_PROPERTIES_CONTEXT), jmsMessage);
-    }
-
     static void applyRequestData(Message message, TextMessage jmsMessage, MqMessagingSystem mqMessagingSystem) throws JMSException {
         addMetadata(message.getContext(REQUEST_METADATA_CONTEXT), jmsMessage, mqMessagingSystem);
         addProperties(message.getContext(REQUEST_PROPERTIES_CONTEXT), jmsMessage);
+    }
+
+    static void applyResponseData(Message message, TextMessage jmsMessage, MqMessagingSystem mqMessagingSystem) throws JMSException {
+        addMetadata(message.getContext(RESPONSE_METADATA_CONTEXT), jmsMessage, mqMessagingSystem);
+        addProperties(message.getContext(RESPONSE_PROPERTIES_CONTEXT), jmsMessage);
     }
 
     private static void addMetadata(Parameters context, TextMessage jmsMessage, MqMessagingSystem mqMessagingSystem) throws JMSException {
@@ -94,10 +95,6 @@ class TextMessageUtil {
 
     private static Boolean boolify(Object value) {
         return Boolean.parseBoolean(stringify(value));
-    }
-
-    private static Long longify(Object value) {
-        return Long.parseLong(stringify(value));
     }
 
     private static void addProperties(Parameters context, TextMessage jmsMessage) throws JMSException {
