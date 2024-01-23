@@ -41,7 +41,7 @@ public class RegurgitatorMessageListener implements MessageListener {
             log.debug("Sending message to regurgitator");
             regurgitator.processMessage(newMessage);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); // TODO error handling ??
         }
     }
 }

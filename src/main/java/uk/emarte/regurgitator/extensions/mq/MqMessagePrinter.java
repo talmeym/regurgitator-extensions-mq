@@ -48,7 +48,7 @@ public class MqMessagePrinter {
 
                 log.info("======================");
             } catch (JMSException e) {
-                log.error("Error printing jms message", e);
+                log.error("Error printing jms message", e); // TODO error handling ??
             }
         });
 

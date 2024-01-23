@@ -52,7 +52,7 @@ class MqResponseCallback implements ResponseCallBack {
             producer.send(jmsMessage);
             session.close();
         } catch (JMSException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO error handling ??
         }
     }
 }

@@ -14,6 +14,6 @@ public class MqMessagingLookup {
             return mqMessagingSystem;
         }
 
-        throw new IllegalStateException("Cannot load mq messaging system");
+        throw new IllegalStateException("Cannot load mq messaging system"); // TODO error handling ??
     }
 }
