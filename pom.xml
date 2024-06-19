@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.emarte.regurgitator</groupId>
     <artifactId>regurgitator-extensions-mq</artifactId>
-    <version>0.1.3</version>
+    <version>0.1.4</version>
     <packaging>jar</packaging>
     <name>Regurgitator Extensions MQ</name>
 
@@ -115,7 +115,7 @@
         <dependency>
             <groupId>uk.emarte.regurgitator</groupId>
             <artifactId>regurgitator-core-config</artifactId>
-            <version>[0.1.3,0.2.0)</version>
+            <version>[0.1.4,0.2.0)</version>
         </dependency>
 
         <dependency>
